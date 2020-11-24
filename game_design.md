@@ -208,7 +208,7 @@ Became familiar with Linux file system and move the ZIP file using SCP.
 
 You are already logged in to the server. Now is the time to find something exciting and ideally compromising, but we don't know exactly what we are looking for. However... do you still remember the list of services running on the server based on the Nmap scan? You already discovered that the server runs the NFS service. NFS protocol is used for file sharing and remote access to files over a computer network. Maybe this server is used to back up data. Try to look whether the admin's home directory stores any files. Then, copy a useful file to your attacker machine.
 
-The flag is the name of the only ZIP file located somewhere the home directory.
+The flag is the name of the only ZIP file (including the extension) located somewhere the home directory.
 
 **Hints** (*visible to the player if requested*):
 
