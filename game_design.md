@@ -57,9 +57,9 @@ The player learns to orient in Kali Linux, open terminal a navigate through file
 **Notes for adaptivity** (*visible only to the designer, never to the player*):
 
 Phases and variants:
-1.1 = Task assignment (familiar with Linux command line)
-1.2 = Task assignment + Hint 1 (not familiar with Linux command line)
-1.3 (default) = Task assignment + Hint 1 + Solution
+- 1.1 = Task assignment (familiar with Linux command line)
+- 1.2 = Task assignment + Hint 1 (not familiar with Linux command line)
+- 1.3 (default) = Task assignment + Hint 1 + Solution
 
 This level is the prerequisite for levels 4 and 5.
 
@@ -127,9 +127,9 @@ The player learns/practice to use nmap tool.
 TODO sandbox definition: hide all machines but Kali in the network topology
 
 Phases and variants:
-2.1 = Task assignment (familiar with nmap)
-2.2 = Task assignment + Hint 1 (not familiar with nmap)
-2.3 (default) = Task assignment + Hint 1 + Hint 2 + Solution
+- 2.1 = Task assignment (familiar with nmap)
+- 2.2 = Task assignment + Hint 1 (not familiar with nmap)
+- 2.3 (default) = Task assignment + Hint 1 + Hint 2 + Solution
 
 This level is the prerequisite for no further level.
 
@@ -187,9 +187,9 @@ Player learns how to log in remotely using SSH.
 **Notes for adaptivity** (*visible only to the designer, never to the player*):
 
 Phases and variants:
-3.1 = Task assignment (familiar with ssh)
-3.2 = Task assignment + Hint 1 + Hint 2 (not familiar with ssh)
-3.3 (default) = Task assignment + Hint 1 + Hint 2 + Hint 3 + Solution
+- 3.1 = Task assignment (familiar with ssh)
+- 3.2 = Task assignment + Hint 1 + Hint 2 (not familiar with ssh)
+- 3.3 (default) = Task assignment + Hint 1 + Hint 2 + Hint 3 + Solution
 
 This level is the prerequisite for level 4.
 
@@ -244,9 +244,9 @@ Player learns to orient in the Linux file system and copy files using SSH.
 **Notes for adaptivity** (*visible only to the designer, never to the player*):
 
 Phases and variants:
-4.1 = Task assignment (familiar with SSH and Linux)
-4.2 = Task assignment + Hint 2 + Hint 3 (familiar with Linux commands, but not ssh/scp)
-4.3 (default) = Task assignment + Hint 1 + Hint 2 + Hint 3 + Solution
+- 4.1 = Task assignment (familiar with SSH and Linux)
+- 4.2 = Task assignment + Hint 2 + Hint 3 (familiar with Linux commands, but not ssh/scp)
+- 4.3 (default) = Task assignment + Hint 1 + Hint 2 + Hint 3 + Solution
 
 This level is the prerequisite for no further level.
 
@@ -307,9 +307,9 @@ Player learns to crack a ZIP's password.
 **Notes for adaptivity** (*visible only to the designer, never to the player*):
 
 Phases and variants:
-5.1 = Task assignment (familiar with Linux command line)
-5.2 = Task assignment + Hint 2 (not familiar with Linux command line)
-5.3 (default) = Task assignment + Hint 1 + Hint 2 + Solution
+- 5.1 = Task assignment (familiar with Linux command line)
+- 5.2 = Task assignment + Hint 2 (not familiar with Linux command line)
+- 5.3 (default) = Task assignment + Hint 1 + Hint 2 + Solution
 
 This level is the prerequisite for no further level.
 
