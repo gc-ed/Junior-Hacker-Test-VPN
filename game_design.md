@@ -48,7 +48,7 @@ wordlist.txt
 
 **Estimated duration** (*visible only to the designer, never to the player*):
 
-20 minutes
+3 minutes
 
 **Learning outcomes** (*visible only to the designer, never to the player*):
 
@@ -116,7 +116,7 @@ root@attacker:~# nmap 10.1.26.0/24
 
 **Estimated duration** (*visible only to the designer, never to the player*):
 
-20 minutes
+5 minutes
 
 **Learning outcomes** (*visible only to the designer, never to the player*):
 
@@ -178,7 +178,7 @@ ssh admin@10.1.26.9
 
 **Estimated duration** (*visible only to the designer, never to the player*):
 
-10 minutes
+5 minutes
 
 **Learning outcomes** (*visible only to the designer, never to the player*):
 
@@ -199,7 +199,7 @@ Pre-game assessment: ssh
 
 **Objective** (*visible only to the designer, never to the player*):
 
-Became familiar with Linux file system and move the ZIP file using SCP.
+Became familiar with Linux file system and move the hidden ZIP file using SCP.
 
 ---
 ---
@@ -235,11 +235,11 @@ admin@10.1.26.9's password: admin
 
 **Estimated duration** (*visible only to the designer, never to the player*):
 
-15 minutes
+5 minutes
 
 **Learning outcomes** (*visible only to the designer, never to the player*):
 
-Player learns to orient in the Linux file system and copy files using SSH.
+Player learns to orient in the Linux file system, find a hidden file and copy it using SSH.
 
 **Notes for adaptivity** (*visible only to the designer, never to the player*):
 
@@ -298,7 +298,7 @@ IhateMyJob
 
 **Estimated duration** (*visible only to the designer, never to the player*):
 
-20 minutes
+10 minutes
 
 **Learning outcomes** (*visible only to the designer, never to the player*):
 
