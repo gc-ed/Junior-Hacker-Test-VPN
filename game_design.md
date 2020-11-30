@@ -86,7 +86,7 @@ The address space of your local network is 10.1.26.0/24.
 The master told you that your goal is to gain access to the server. Scan the network and recognize the server's IP address. You can recognize the server by its running services.
 The server you are searching for has more open ports than other machines in the network.
 
-The flag is the port number on which the data service is running on the server's machine.
+The flag is the port number on which the file sharing service is running on the server's machine.
 
 **Hints** (*visible to the player if requested*):
 
