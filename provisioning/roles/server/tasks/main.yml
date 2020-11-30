@@ -27,7 +27,7 @@
       owner: admin
       mode: 0640
   with_items:
-      - invoices2019.zip
+      - .invoices2019.zip
       - Croatia 2019
       - Italy 2018
       - Mydata.xlsx
