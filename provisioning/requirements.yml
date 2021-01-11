@@ -1,0 +1,14 @@
+- src: git@gitlab.ics.muni.cz:CSIRT-MU-public/ansible-roles/kypo-user-access.git
+  scm: git
+
+- src: git@gitlab.ics.muni.cz:CSIRT-MU-public/ansible-roles/disable-qxl.git
+  scm: git
+
+- src: git@gitlab.ics.muni.cz:muni-kypo-crp/backend-python/ansible-networking-stage/kypo-user-access.git
+  scm: git
+
+- src: git@gitlab.ics.muni.cz:muni-kypo-crp/useful-ansible-roles/kypo-sandbox-logging-bash.git
+  scm: git
+
+- src: git@gitlab.ics.muni.cz:muni-kypo-crp/useful-ansible-roles/kypo-sandbox-logging-forward.git
+  scm: git

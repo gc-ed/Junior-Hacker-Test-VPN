@@ -9,12 +9,107 @@
     - hosts
 
 # Installation and configuration of each host
-- name: Configuring devices separately
-  hosts: all
+- name: Configure attacker
+  hosts: attacker
+  become: yes
+  roles:
+    - attacker
+  pre_tasks:
+    - name: "Start and enable NTP service for time sync"
+      service:
+        name: ntp
+        state: started
+        enabled: yes
+    - name: "Workaround for enabling command logging"
+      command: echo 'source /etc/profile > /root/.bashrc'
+
+- name: Configure server
+  hosts: server
+  become: yes
+  roles:
+    - server
+
+- name: Configure server
+  hosts: client
+  become: yes
+  roles:
+    - client
+
+# Added by P.S.
+- name: Add MAN IP Fact
+  hosts: man
+  gather_facts: no
+  tasks:
+    - set_fact:
+        man_ip_address: '{{ ansible_host }}'
+
+- name: setup hosts logging roles
+  hosts:
+      - routers
+      - hosts
+  gather_facts: yes
+  become: yes
+  become_user: root
+  roles:
+    - role: kypo-sandbox-logging-forward
+      kslf_sandbox_name: "{{ kypo_global_sandbox_name }}"
+      kslf_man_ip: "{{ hostvars['man'].man_ip_address }}"
+      kslf_pool_id: "{{ kypo_global_pool_id }}"
+      kslf_sandbox_id: "{{ kypo_global_sandbox_allocation_unit_id }}"
+    - role: kypo-sandbox-logging-bash
+
+- name: Fix graphical console
+  hosts: attacker
+  become: yes
+  roles:
+    - disable-qxl
+
+- name: Fix BASH logging for root at attacker
+  hosts: attacker
   become: yes
   tasks:
-  - name: include role
-    include_role:
-      name: "{{ inventory_hostname }}"
-
+    - name: "Source all of ~/.bashrc.d/* to .bashrc"
+      blockinfile:
+       dest: "/etc/bash.bashrc"
+       block: |
+          if [ -d /etc/bashrc.d ]; then
+          for f in /etc/bashrc.d/*.sh; do
+              if [ -r $f ]; then
+                  . $f
+              fi
+          done
+          unset f
+          fi
+       marker: '# {mark} source bashrc.d'
+       insertafter: EOF
+       create: no
+    - name: Ensures /etc/bashrc.d/ exists
+      file:
+        path: "/etc/bashrc.d/"
+        state: "directory"
+    - name: "Setup bash command monitoring"
+      copy:
+        src: /etc/profile.d/log_commands.sh
+        dest: /etc/bashrc.d/log_commands.sh
+        remote_src: yes
+        mode: 0644
+    - name: "Add history configuration to /etc/bashrc.d/history.sh"
+      copy:
+        src: /etc/profile.d/history.sh
+        dest: /etc/bashrc.d/history.sh
+        remote_src: yes
+        mode: 0755
+  
+- name: user access
+  hosts:
+      - user-accessible
+  gather_facts: no
+  become: yes
+  become_user: root
+  tasks:
+    - name: kypo user access
+      include_role:
+        name: kypo-user-access
+      vars:
+        kypo_user_access_username: root
 
