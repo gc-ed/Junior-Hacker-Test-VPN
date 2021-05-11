@@ -500,8 +500,8 @@
     "phase_type" : "QUESTIONNAIRE",
     "order" : 7,
     "questions" : [ {
-      "order" : 2,
-      "text" : "Did you feel the game should be more difficult for you?",
+      "order" : 0,
+      "text" : "Did you feel the tasks were designed so that you can complete the training in a timely manner?",
       "question_type" : "RFQ",
       "choices" : [ {
         "text" : "Not at all ",
@@ -525,8 +525,58 @@
         "order" : 4
       } ]
     }, {
+      "order" : 1,
+      "text" : "Did you feel you got stuck at some point during the training?",
+      "question_type" : "RFQ",
+      "choices" : [ {
+        "text" : "Not at all",
+        "correct" : true,
+        "order" : 0
+      }, {
+        "text" : "Slightly",
+        "correct" : true,
+        "order" : 1
+      }, {
+        "text" : "Moderately",
+        "correct" : true,
+        "order" : 2
+      }, {
+        "text" : "Much",
+        "correct" : true,
+        "order" : 3
+      }, {
+        "text" : "Very much",
+        "correct" : true,
+        "order" : 4
+      } ]
+    }, {
+      "order" : 2,
+      "text" : "How much did you enjoy the training?",
+      "question_type" : "RFQ",
+      "choices" : [ {
+        "text" : "Not at all",
+        "correct" : true,
+        "order" : 0
+      }, {
+        "text" : "Slightly",
+        "correct" : true,
+        "order" : 1
+      }, {
+        "text" : "Moderately",
+        "correct" : true,
+        "order" : 2
+      }, {
+        "text" : "Much",
+        "correct" : true,
+        "order" : 3
+      }, {
+        "text" : "Very much",
+        "correct" : true,
+        "order" : 4
+      } ]
+    }, {
       "order" : 3,
-      "text" : "Did you feel that you would like the game to be longer with additional tasks to solve?",
+      "text" : "Did you feel the training should be more difficult for you?",
       "question_type" : "RFQ",
       "choices" : [ {
         "text" : "Not at all ",
@@ -551,10 +601,10 @@
       } ]
     }, {
       "order" : 4,
-      "text" : "Would you like to play more adaptive cybersecurity games like this one?",
+      "text" : "Did you feel you would like the training to be longer with additional tasks to solve?",
       "question_type" : "RFQ",
       "choices" : [ {
-        "text" : "Not at all",
+        "text" : "Not at all ",
         "correct" : true,
         "order" : 0
       }, {
@@ -576,59 +626,34 @@
       } ]
     }, {
       "order" : 5,
+      "text" : "Would you like to play more cybersecurity training sessions like this one?",
+      "question_type" : "RFQ",
+      "choices" : [ {
+        "text" : "Not at all",
+        "correct" : true,
+        "order" : 0
+      }, {
+        "text" : "Slightly",
+        "correct" : true,
+        "order" : 1
+      }, {
+        "text" : "Moderately",
+        "correct" : true,
+        "order" : 2
+      }, {
+        "text" : "Much",
+        "correct" : true,
+        "order" : 3
+      }, {
+        "text" : "Very much",
+        "correct" : true,
+        "order" : 4
+      } ]
+    }, {
+      "order" : 6,
       "text" : "Do you have other comments or notes from the training?",
       "question_type" : "FFQ",
       "choices" : [ ]
-    }, {
-      "order" : 0,
-      "text" : "Did you feel that you got stuck at some point during the game?",
-      "question_type" : "RFQ",
-      "choices" : [ {
-        "text" : "Not at all",
-        "correct" : true,
-        "order" : 0
-      }, {
-        "text" : "Slightly",
-        "correct" : true,
-        "order" : 1
-      }, {
-        "text" : "Moderately",
-        "correct" : true,
-        "order" : 2
-      }, {
-        "text" : "Much",
-        "correct" : true,
-        "order" : 3
-      }, {
-        "text" : "Very much",
-        "correct" : true,
-        "order" : 4
-      } ]
-    }, {
-      "order" : 1,
-      "text" : "How much did you enjoy playing the game?",
-      "question_type" : "RFQ",
-      "choices" : [ {
-        "text" : "Not at all",
-        "correct" : true,
-        "order" : 0
-      }, {
-        "text" : "Slightly",
-        "correct" : true,
-        "order" : 1
-      }, {
-        "text" : "Moderately",
-        "correct" : true,
-        "order" : 2
-      }, {
-        "text" : "Much",
-        "correct" : true,
-        "order" : 3
-      }, {
-        "text" : "Very much",
-        "correct" : true,
-        "order" : 4
-      } ]
     } ],
     "questionnaire_type" : "GENERAL",
     "phase_relations" : [ ]
