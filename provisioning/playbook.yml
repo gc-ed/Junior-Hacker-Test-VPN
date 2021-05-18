@@ -58,12 +58,6 @@
       slf_sandbox_id: "{{ kypo_global_sandbox_allocation_unit_id }}"
     - role: sandbox-logging-bash
 
-- name: Fix graphical console
-  hosts: attacker
-  become: yes
-  roles:
-    - disable-qxl
-
 - name: Fix BASH logging for root at attacker
   hosts: attacker
   become: yes
