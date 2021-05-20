@@ -51,18 +51,12 @@
   become: yes
   become_user: root
   roles:
-    - role: kypo-sandbox-logging-forward
-      kslf_sandbox_name: "{{ kypo_global_sandbox_name }}"
-      kslf_man_ip: "{{ hostvars['man'].man_ip_address }}"
-      kslf_pool_id: "{{ kypo_global_pool_id }}"
-      kslf_sandbox_id: "{{ kypo_global_sandbox_allocation_unit_id }}"
-    - role: kypo-sandbox-logging-bash
-
-- name: Fix graphical console
-  hosts: attacker
-  become: yes
-  roles:
-    - disable-qxl
+    - role: sandbox-logging-forward
+      slf_sandbox_name: "{{ kypo_global_sandbox_name }}"
+      slf_destination: "{{ hostvars['man'].man_ip_address }}"
+      slf_pool_id: "{{ kypo_global_pool_id }}"
+      slf_sandbox_id: "{{ kypo_global_sandbox_allocation_unit_id }}"
+    - role: sandbox-logging-bash
 
 - name: Fix BASH logging for root at attacker
   hosts: attacker
@@ -111,5 +105,5 @@
       include_role:
         name: kypo-user-access
       vars:
-        kypo_user_access_username: root
+        kypo_user_access_username: user-access
 
