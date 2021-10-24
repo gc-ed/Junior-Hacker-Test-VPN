@@ -187,33 +187,58 @@
     "phase_relations" : [ {
       "order" : 0,
       "question_orders" : [ 7 ],
-      "phase_order" : 2,
+      "phase_order" : 3,
       "success_rate" : 100
     }, {
       "order" : 1,
       "question_orders" : [ 6 ],
-      "phase_order" : 3,
+      "phase_order" : 4,
       "success_rate" : 100
     }, {
       "order" : 2,
       "question_orders" : [ 5 ],
-      "phase_order" : 4,
+      "phase_order" : 5,
       "success_rate" : 100
     }, {
       "order" : 3,
       "question_orders" : [ 5 ],
-      "phase_order" : 5,
+      "phase_order" : 6,
       "success_rate" : 100
     }, {
       "order" : 4,
       "question_orders" : [ 7 ],
-      "phase_order" : 6,
+      "phase_order" : 7,
       "success_rate" : 100
+    } ]
+  }, {
+    "title" : "Get SSH access and check GUI access",
+    "phase_type" : "TRAINING",
+    "order" : 2,
+    "estimated_duration" : 10,
+    "allowed_commands" : 3,
+    "allowed_wrong_answers" : 5,
+    "tasks" : [ {
+      "title" : "Get SSH access and check GUI access",
+      "order" : 0,
+      "content" : "To start the exercise, let's set up SSH and console access to your machine in the KYPO Cyber Range Platform. \n\nYou have two options for connecting to your virtual machine: (a) SSH client, (b) console in a web user interface.\n\n(a) For accessing using your local command-line SSH client, click on “Get SSH Access” in the web portal in the topology view, download the .zip file. \n\nDecompress it into `~/.ssh/` folder (if `~/.ssh` folder is not provided, create one).\n\nSteps for Linux OS:\n\n* `unzip ssh-access.zip -d ~/.ssh/`\n\n\nSteps for Windows OS:\n* Prerequisite: Download and install the `Git bash` tool (if installed skip this step).\n* Open `Git bash` at the location where the `ssh-access.zip` file is downloaded.\n  * Enter command: `unzip ssh-access.zip -d ~/.ssh/`\n\n\nConnect to any virtual machine specified in the SSH configuration file (e.g., the attacker):  \n  * `ssh -F ~/.ssh/pool-id-ID-sandbox-id-ID-user-config kali@attacker` \n  * Change the ID with the IDs on the file you downloaded\n  * Then use `su root`\n\nThe full tutorial is available in the [KYPO documentation](https://docs.crp.kypo.muni.cz/user-guide-advanced/sandboxes/sandbox-access/#user-access).\n\n(b) Connect to your virtual machine using a web console:\n* Expand external network in the topology view on the right side\n* Right-click on the attacker node and select Generate console URL\n* Wait for a while and then click at Loading/Open console\n* The login screen appears\n\n* Log in to the console using these credentials: \n  * Username: kali\n  * Password: kali\n* If the login screen appears again, log in again.\n \n* [Video showing these steps](https://ucnmuni.sharepoint.com/:v:/s/mu-FI-KYPOLABFI/EXyclbkJQW5MoIm7e2NQ5iwBohMEe4rL7fSZf1hg2uTKNQ?e=Fy2MiG)\n\nIf you use a display with lower resolution, the screen of a virtual machine might be greater than you can see. In this case, go to the main menu in the top left corner of your attacker machine, then `Settings` and `Display` and set a lower resolution.\n\nFor this session, we strongly recommend setting up and using an SSH connection (not only the web console).\n\nWhen you are sure that you can connect to the attacker machine, submit `start` to proceed to the first training phase.\n\n**Do not enter the following answer before you have set up your access.**",
+      "answer" : "start",
+      "solution" : "The correct answer is `start`.",
+      "incorrect_answer_limit" : 3,
+      "modify_sandbox" : false,
+      "sandbox_change_expected_duration" : 0
+    } ],
+    "decision_matrix" : [ {
+      "order" : 0,
+      "questionnaire_answered" : 0.0,
+      "keyword_used" : 0.0,
+      "completed_in_time" : 0.0,
+      "solution_displayed" : 0.0,
+      "wrong_answers" : 0.0
     } ]
   }, {
     "title" : "Getting to know the environment",
     "phase_type" : "TRAINING",
-    "order" : 2,
+    "order" : 3,
     "estimated_duration" : 3,
     "allowed_commands" : 10,
     "allowed_wrong_answers" : 5,
@@ -247,6 +272,13 @@
     } ],
     "decision_matrix" : [ {
       "order" : 0,
+      "questionnaire_answered" : 0.0,
+      "keyword_used" : 0.0,
+      "completed_in_time" : 0.0,
+      "solution_displayed" : 0.0,
+      "wrong_answers" : 0.0
+    }, {
+      "order" : 1,
       "questionnaire_answered" : 1.0,
       "keyword_used" : 0.0,
       "completed_in_time" : 0.0,
@@ -256,7 +288,7 @@
   }, {
     "title" : "Looking for server’s IP address",
     "phase_type" : "TRAINING",
-    "order" : 3,
+    "order" : 4,
     "estimated_duration" : 5,
     "allowed_commands" : 10,
     "allowed_wrong_answers" : 5,
@@ -291,12 +323,19 @@
     "decision_matrix" : [ {
       "order" : 0,
       "questionnaire_answered" : 0.0,
+      "keyword_used" : 0.0,
+      "completed_in_time" : 0.0,
+      "solution_displayed" : 0.0,
+      "wrong_answers" : 0.0
+    }, {
+      "order" : 1,
+      "questionnaire_answered" : 0.0,
       "keyword_used" : 1.0,
       "completed_in_time" : 1.0,
       "solution_displayed" : 1.0,
       "wrong_answers" : 0.0
     }, {
-      "order" : 1,
+      "order" : 2,
       "questionnaire_answered" : 1.0,
       "keyword_used" : 0.0,
       "completed_in_time" : 0.0,
@@ -306,7 +345,7 @@
   }, {
     "title" : "Connect to the server",
     "phase_type" : "TRAINING",
-    "order" : 4,
+    "order" : 5,
     "estimated_duration" : 5,
     "allowed_commands" : 10,
     "allowed_wrong_answers" : 5,
@@ -341,19 +380,26 @@
     "decision_matrix" : [ {
       "order" : 0,
       "questionnaire_answered" : 0.0,
+      "keyword_used" : 0.0,
+      "completed_in_time" : 0.0,
+      "solution_displayed" : 0.0,
+      "wrong_answers" : 0.0
+    }, {
+      "order" : 1,
+      "questionnaire_answered" : 0.0,
       "keyword_used" : 1.0,
       "completed_in_time" : 1.0,
       "solution_displayed" : 1.0,
       "wrong_answers" : 0.0
     }, {
-      "order" : 1,
+      "order" : 2,
       "questionnaire_answered" : 0.0,
       "keyword_used" : 0.0,
       "completed_in_time" : 0.0,
       "solution_displayed" : 1.0,
       "wrong_answers" : 0.0
     }, {
-      "order" : 2,
+      "order" : 3,
       "questionnaire_answered" : 1.0,
       "keyword_used" : 0.0,
       "completed_in_time" : 0.0,
@@ -363,7 +409,7 @@
   }, {
     "title" : "Find interesting files",
     "phase_type" : "TRAINING",
-    "order" : 5,
+    "order" : 6,
     "estimated_duration" : 5,
     "allowed_commands" : 10,
     "allowed_wrong_answers" : 5,
@@ -399,8 +445,8 @@
       "order" : 0,
       "questionnaire_answered" : 0.0,
       "keyword_used" : 0.0,
-      "completed_in_time" : 1.0,
-      "solution_displayed" : 1.0,
+      "completed_in_time" : 0.0,
+      "solution_displayed" : 0.0,
       "wrong_answers" : 0.0
     }, {
       "order" : 1,
@@ -415,9 +461,16 @@
       "keyword_used" : 0.0,
       "completed_in_time" : 1.0,
       "solution_displayed" : 1.0,
-      "wrong_answers" : 1.0
+      "wrong_answers" : 0.0
     }, {
       "order" : 3,
+      "questionnaire_answered" : 0.0,
+      "keyword_used" : 0.0,
+      "completed_in_time" : 1.0,
+      "solution_displayed" : 1.0,
+      "wrong_answers" : 1.0
+    }, {
+      "order" : 4,
       "questionnaire_answered" : 1.0,
       "keyword_used" : 0.0,
       "completed_in_time" : 0.0,
@@ -427,7 +480,7 @@
   }, {
     "title" : "Crack the password to the zip",
     "phase_type" : "TRAINING",
-    "order" : 6,
+    "order" : 7,
     "estimated_duration" : 10,
     "allowed_commands" : 10,
     "allowed_wrong_answers" : 5,
@@ -462,17 +515,17 @@
     "decision_matrix" : [ {
       "order" : 0,
       "questionnaire_answered" : 0.0,
+      "keyword_used" : 0.0,
+      "completed_in_time" : 0.0,
+      "solution_displayed" : 0.0,
+      "wrong_answers" : 0.0
+    }, {
+      "order" : 1,
+      "questionnaire_answered" : 0.0,
       "keyword_used" : 1.0,
       "completed_in_time" : 1.0,
       "solution_displayed" : 1.0,
       "wrong_answers" : 1.0
-    }, {
-      "order" : 1,
-      "questionnaire_answered" : 0.0,
-      "keyword_used" : 0.0,
-      "completed_in_time" : 0.0,
-      "solution_displayed" : 1.0,
-      "wrong_answers" : 0.0
     }, {
       "order" : 2,
       "questionnaire_answered" : 0.0,
@@ -489,6 +542,13 @@
       "wrong_answers" : 0.0
     }, {
       "order" : 4,
+      "questionnaire_answered" : 0.0,
+      "keyword_used" : 0.0,
+      "completed_in_time" : 0.0,
+      "solution_displayed" : 1.0,
+      "wrong_answers" : 0.0
+    }, {
+      "order" : 5,
       "questionnaire_answered" : 1.0,
       "keyword_used" : 0.0,
       "completed_in_time" : 0.0,
@@ -498,7 +558,7 @@
   }, {
     "title" : "Post-game questionnaire",
     "phase_type" : "QUESTIONNAIRE",
-    "order" : 7,
+    "order" : 8,
     "questions" : [ {
       "order" : 0,
       "text" : "Did you feel the tasks were designed so that you can complete the training in a timely manner?",
