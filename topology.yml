@@ -3,7 +3,7 @@ name: junior-hacker-sandbox
 hosts:
   - name: attacker
     base_box:
-      image: kali-linux-2019.4-amd64
+      image: kali-2019.4
       man_user: debian
     flavor: csirtmu.tiny1x2
 
