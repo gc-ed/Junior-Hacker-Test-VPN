@@ -105,5 +105,6 @@
       include_role:
         name: kypo-user-access
       vars:
-        kypo_user_access_username: user-access
+        kypo_user_access_username: kali
+        kypo_user_access_password: kali
 
