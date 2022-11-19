@@ -50,7 +50,7 @@
       slf_sandbox_name: "{{ kypo_global_sandbox_name }}"
       slf_destination: "{{ hostvars['man'].man_ip_address }}"
       slf_pool_id: "{{ kypo_global_pool_id }}"
-      slf_sandbox_id: "{{ kypo_global_sandbox_allocation_unit_id }}"
+      slf_sandbox_id: "{{ kypo_global_sandbox_id }}"
     - role: sandbox-logging-bash
 
 - name: Fix BASH logging for root at attacker
