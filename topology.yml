@@ -1,4 +1,4 @@
-name: junior-hacker-sandbox
+name: junior-hacker-adaptive-sandbox
 
 hosts:
   - name: attacker
