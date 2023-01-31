@@ -15,11 +15,6 @@
   roles:
     - attacker
   pre_tasks:
-    - name: "Start and enable NTP service for time sync"
-      service:
-        name: ntp
-        state: started
-        enabled: yes
     - name: "Workaround for enabling command logging"
       command: echo 'source /etc/profile > /root/.bashrc'
 
