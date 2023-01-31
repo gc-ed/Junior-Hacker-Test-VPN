@@ -4,6 +4,23 @@
     path: /etc/hosts
     line: "{{ item.value }} {{ item.key }}"
 
+- name: Allow SSH password authentication
+  lineinfile:
+    path: '/etc/ssh/sshd_config'
+    line: 'PasswordAuthentication yes'
+    regexp: '^#?PasswordAuthentication'
+  register: password_auth
+
+- name: Restart sshd service
+  service:
+    name: sshd
+    state: restarted
+  when: password_auth is changed
+
+- name: Setup root account password
+  user:
+    name: root
+    password: '$6$wEz0MHKHK/cjuU3l$3BQWREyYZ1KmWfCjqqB5ZQ/freMTsRp3YOSGDX4QnelxDChkqfCd0H3z6.c4j7a076j0DokebwLmgRvwgKSeU.' # toor
 
 - name: Add zip's password to the fasttrack wordlist
   lineinfile:
