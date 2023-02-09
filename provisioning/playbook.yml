@@ -24,7 +24,7 @@
   roles:
     - server
 
-- name: Configure server
+- name: Configure client
   hosts: client
   become: yes
   roles:
@@ -91,15 +91,11 @@
   
 - name: user access
   hosts:
-      - user-accessible
+      - attacker
   gather_facts: no
   become: yes
-  become_user: root
-  tasks:
-    - name: kypo user access
-      include_role:
-        name: kypo-user-access
-      vars:
-        kypo_user_access_username: kali
-        kypo_user_access_password: kali
+  roles:
+    - name: kypo-user-access
+      kypo_user_access_username: root
+      kypo_user_access_password: toor
 

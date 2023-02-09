@@ -35,13 +35,16 @@
       - Treasure-Island.pdf
 
 - name: install nfs server
-  action: apt pkg=nfs-kernel-server state=present update_cache=yes
+  apt: 
+    pkg: nfs-kernel-server
+    state: present
+    update_cache: yes
   tags:
     - nfs
 
 - name: ensure nfs service is running (Ubuntu)
-  action: service name={{item}} state=started
+  service:
+    name: nfs-kernel-server
+    state: started
   tags:
     - nfs
-  with_items:
-    - nfs-kernel-server

@@ -1,8 +1,5 @@
 ---
 # Basic configuration of all host devices
-# to fix: fatal: [attacker]: FAILED! => {"changed": false, "cmd": "apt-get install --no-install-recommends python-apt -y -q", "msg": "E: Package 'python-apt' has no installation candidate", "rc": 100, "stderr": "E: Package 'python-apt' has no installation candidate\n", "stderr_lines": ["E: Package 'python-apt' has no installation candidate"], "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nPackage python-apt is not available, but is referred to by another package.\nThis may mean that the package is missing, has been obsoleted, or\nis only available from another source\nHowever the following packages replace it:\n python3-apt python-apt-common python3-apt-dbg python-apt-doc\n\n", "stdout_lines": ["Reading package lists...", "Building dependency tree...", "Reading state information...", "Package python-apt is not available, but is referred to by another package.", "This may mean that the package is missing, has been obsoleted, or", "is only available from another source", "However the following packages replace it:", " python3-apt python-apt-common python3-apt-dbg python-apt-doc", ""]}
-#- name: python3-apt
-#  shell: apt-get update && apt-get install -y python3-pip
 
 - name: Install net-tools and unzip
   apt:
