@@ -9,19 +9,19 @@
       path: /usr/share/wordlists/fasttrack.txt
       line: IhateMyJob
 
-- name: Create /root/hacking directory
+- name: Create /home/user/hacking directory
   file:
-    path: /root/hacking
+    path: /home/user/hacking
     state: directory
-    owner: root
-    group: root
+    owner: user
+    group: user
     mode: 0700
 
 - name: Copy and rename the wordlist to /root/hacking
   copy:
       src: /usr/share/wordlists/fasttrack.txt
-      dest: /root/hacking/wordlist.txt
-      owner: root
+      dest: /home/user/hacking/wordlist.txt
+      owner: user
       mode: 0640
       remote_src: yes
 

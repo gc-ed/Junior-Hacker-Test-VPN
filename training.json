@@ -215,7 +215,7 @@
     "phase_type" : "ACCESS",
     "order" : 2,
     "passkey" : "start",
-    "cloud_content" : "Your first task is to access the sandbox, where you will complete all following tasks. After you have successfully connected, Submit the answer **`start`**.\n\n### Sandbox access\n1. In the topology overview on the right, right-click on **`attacker`** and then click on **`Open GUI`**, and a new pop-up window will appear. \n2. Login with username **`root`** and password **`toor`**.\n\nAlternatively, you can use SSH to connect to the machine. SSH access makes it easier to copy-paste commands and flags, but requires more steps to set up. See [documentation](https://docs.crp.kypo.muni.cz/user-guide-advanced/sandboxes/sandbox-access/#user-access) for more details.",
+    "cloud_content" : "Your first task is to access the sandbox, where you will complete all following tasks. After you have successfully connected, Submit the answer **`start`**.\n\n### Sandbox access\n1. In the topology overview on the right, right-click on **`attacker`** and then click on **`Open GUI`**, and a new pop-up window will appear. \n2. Login with username **`user`** and password **`Password123`**.\n\nAlternatively, you can use SSH to connect to the machine. SSH access makes it easier to copy-paste commands and flags, but requires more steps to set up. See [documentation](https://docs.crp.kypo.muni.cz/user-guide-advanced/sandboxes/sandbox-access/#user-access) for more details.",
     "local_content" : "This sandbox has not been tested for use with local sandbox."
   }, {
     "title" : "Getting to know the environment",
@@ -227,27 +227,27 @@
     "tasks" : [ {
       "title" : "Getting to know the environment",
       "order" : 0,
-      "content" : "The master handed you a laptop, saying to you:\n*\"You studied hard in the past weeks. Now, you are ready for real-world hacking training, but you need the right equipment. In today's lecture, I will teach you using Kali Linux and show you some of its basic functionality, which will make hacking easier.\"*\n\nFirst, get acquainted with the **command line** at your **Kali Linux**, the most popular Linux distribution for penetration testing. Or hacking? :-)\n\nLook around your home directory `/root`. You will need this skill when you hack into another Linux machine.\nThe answer for this task is the **name of the single file** stored in a non-empty directory in your home directory.",
+      "content" : "The master handed you a laptop, saying to you:\n*\"You studied hard in the past weeks. Now, you are ready for real-world hacking training, but you need the right equipment. In today's lecture, I will teach you using Kali Linux and show you some of its basic functionality, which will make hacking easier.\"*\n\nFirst, get acquainted with the **command line** at your **Kali Linux**, the most popular Linux distribution for penetration testing. Or hacking? :-)\n\nLook around your home directory `/home/user`. You will need this skill when you hack into another Linux machine.\nThe answer for this task is the **name of the single file** stored in a non-empty directory in your home directory.",
       "answer" : "wordlist.txt",
-      "solution" : "```\nroot@attacker:~# ls /root/hacking\nwordlist.txt\n```",
+      "solution" : "```\nuser@attacker:~# ls /home/user/hacking\nwordlist.txt\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
     }, {
       "title" : "Getting to know the environment",
       "order" : 1,
-      "content" : "The master handed you a laptop, saying to you:\n*\"You studied hard in the past weeks. Now, you are ready for real-world hacking training, but you need the right equipment. In today's lecture, I will teach you using Kali Linux and show you some of its basic functionality, which will make hacking easier.\"*\n\nFirst, get acquainted with the **command line** at your **Kali Linux**, the most popular Linux distribution for penetration testing. Or hacking? :-)\n\nLook around your home directory `/root`. You will need this skill when you hack into another Linux machine.\nThe answer for this task is the **name of the single file** stored in a non-empty directory in your home directory.\n\nUse `ls`. If you want to change the directory, use `cd`. Your home folder is located in `/root` directory.",
+      "content" : "The master handed you a laptop, saying to you:\n*\"You studied hard in the past weeks. Now, you are ready for real-world hacking training, but you need the right equipment. In today's lecture, I will teach you using Kali Linux and show you some of its basic functionality, which will make hacking easier.\"*\n\nFirst, get acquainted with the **command line** at your **Kali Linux**, the most popular Linux distribution for penetration testing. Or hacking? :-)\n\nLook around your home directory `/home/user`. You will need this skill when you hack into another Linux machine.\nThe answer for this task is the **name of the single file** stored in a non-empty directory in your home directory.\n\nUse `ls`. If you want to change the directory, use `cd`. Your home folder is located in `/home/user` directory.",
       "answer" : "wordlist.txt",
-      "solution" : "```\nroot@attacker:~# ls /root/hacking\nwordlist.txt\n```",
+      "solution" : "```\nuser@attacker:~# ls /home/user/hacking\nwordlist.txt\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
     }, {
       "title" : "Getting to know the environment",
       "order" : 2,
-      "content" : "The master handed you a laptop, saying to you:\n*\"You studied hard in the past weeks. Now, you are ready for real-world hacking training, but you need the right equipment. In today's lecture, I will teach you using Kali Linux and show you some of its basic functionality, which will make hacking easier.\"*\n\nFirst, get acquainted with the **command line** at your **Kali Linux**, the most popular Linux distribution for penetration testing. Or hacking? :-)\n\nLook around your home directory `/root`. You will need this skill when you hack into another Linux machine.\nThe answer for this task is the **name of the single file** stored in a non-empty directory in your home directory.\n\nUse `ls`. If you want to change the directory, use `cd`. Your home folder is located in `/root` directory.",
+      "content" : "The master handed you a laptop, saying to you:\n*\"You studied hard in the past weeks. Now, you are ready for real-world hacking training, but you need the right equipment. In today's lecture, I will teach you using Kali Linux and show you some of its basic functionality, which will make hacking easier.\"*\n\nFirst, get acquainted with the **command line** at your **Kali Linux**, the most popular Linux distribution for penetration testing. Or hacking? :-)\n\nLook around your home directory `/home/user`. You will need this skill when you hack into another Linux machine.\nThe answer for this task is the **name of the single file** stored in a non-empty directory in your home directory.\n\nUse `ls`. If you want to change the directory, use `cd`. Your home folder is located in `/home/user` directory.",
       "answer" : "wordlist.txt",
-      "solution" : "```\nroot@attacker:~# ls /root/hacking\nwordlist.txt\n```",
+      "solution" : "```\nuser@attacker:~# ls /home/user/hacking\nwordlist.txt\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -274,7 +274,7 @@
       "order" : 0,
       "content" : "You already managed to guess the password on a Wi-Fi router with the master's help (**12345678**, really?!), so now you are already connected to the local network of one household.\n\nThe address space of your local network is **10.1.26.0/24**. \n\nThe master told you that your goal is to gain access to the server. **Scan the network** and recognize the server's **IP address**. You can recognize the server by its **running services**.\n\nThe server you are searching for has **more open ports** than other machines in the network.\n\nThe answer is the **port number** on which the **file sharing service** is running on the server's machine.",
       "answer" : "2049",
-      "solution" : "```\nroot@attacker:~# nmap 10.1.26.0/24\n\n2049/tcp open  nfs\n\n2049\n```",
+      "solution" : "```\nuser@attacker:~# nmap 10.1.26.0/24\n\n2049/tcp open  nfs\n\n2049\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -283,7 +283,7 @@
       "order" : 1,
       "content" : "You already managed to guess the password on a Wi-Fi router with the master's help (**12345678**, really?!), so now you are already connected to the local network of one household.\n\nThe address space of your local network is **10.1.26.0/24**. \n\nThe master told you that your goal is to gain access to the server. **Scan the network** and recognize the server's **IP address**. You can recognize the server by its **running services**.\n\nThe server you are searching for has **more open ports** than other machines in the network.\n\nThe answer is the **port number** on which the **file sharing service** is running on the server's machine.\n\nUse the command-line tool `nmap`. If you can't figure out how to use the tool, call it with the suffix `--help` to get detailed instructions, consult its manual page `man nmap`, or use your favourite search engine.\n\n",
       "answer" : "2049",
-      "solution" : "```\nroot@attacker:~# nmap 10.1.26.0/24\n\n2049/tcp open  nfs\n\n2049\n```",
+      "solution" : "```\nuser@attacker:~# nmap 10.1.26.0/24\n\n2049/tcp open  nfs\n\n2049\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -292,7 +292,7 @@
       "order" : 2,
       "content" : "You already managed to guess the password on a Wi-Fi router with the master's help (**12345678**, really?!), so now you are already connected to the local network of one household.\n\nThe address space of your local network is **10.1.26.0/24**. \n\nThe master told you that your goal is to gain access to the server. **Scan the network** and recognize the server's **IP address**. You can recognize the server by its **running services**.\n\nThe server you are searching for has **more open ports** than other machines in the network.\n\nThe answer is the **port number** on which the **file sharing service** is running on the server's machine.\n\nUse the command-line tool `nmap`. If you can't figure out how to use the tool, call it with the suffix `--help` to get detailed instructions, consult its manual page `man nmap`, or use your favourite search engine.\n\nRun `nmap 10.1.26.0/24` and see open ports in its output. Nmap scan report for `10.1.26.9` shows the most running services.",
       "answer" : "2049",
-      "solution" : "```\nroot@attacker:~# nmap 10.1.26.0/24\n\n2049/tcp open  nfs\n\n2049\n```",
+      "solution" : "```\nuser@attacker:~# nmap 10.1.26.0/24\n\n2049/tcp open  nfs\n\n2049\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -326,7 +326,7 @@
       "order" : 0,
       "content" : "You know the IP address of the server. It was easy, right?\n\nNow comes the more interesting part of how to use this knowledge to your **advantage**. Connect **remotely** to the server and use **legitimate credentials**. The master told you that the login details will most likely one of these: **admin/password**, **admin/123456** or **admin/admin**. It's worth trying, isn't it?\n\nThe answer is the **entire command** for logging into the server.",
       "answer" : "ssh admin@10.1.26.9",
-      "solution" : "```\nroot@attacker:~# ssh admin@10.1.26.9\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\nadmin@10.1.26.9's password: admin\n```",
+      "solution" : "```\nuser@attacker:~# ssh admin@10.1.26.9\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\nadmin@10.1.26.9's password: admin\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -335,7 +335,7 @@
       "order" : 1,
       "content" : "You know the IP address of the server. It was easy, right?\n\nNow comes the more interesting part of how to use this knowledge to your **advantage**. Connect **remotely** to the server and use **legitimate credentials**. The master told you that the login details will most likely one of these: **admin/password**, **admin/123456** or **admin/admin**. It's worth trying, isn't it?\n\nThe answer is the **entire command** for logging into the server.\n\nUse the command-line tool `ssh`.\n\nThe syntax is `ssh username@hostname_or_ip`, where the part after @ is the `hostname` or IP address of the device you want to connect to.\n\n",
       "answer" : "ssh admin@10.1.26.9",
-      "solution" : "```\nroot@attacker:~# ssh admin@10.1.26.9\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\nadmin@10.1.26.9's password: admin\n```",
+      "solution" : "```\nuser@attacker:~# ssh admin@10.1.26.9\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\nadmin@10.1.26.9's password: admin\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -344,7 +344,7 @@
       "order" : 2,
       "content" : "You know the IP address of the server. It was easy, right?\n\nNow comes the more interesting part of how to use this knowledge to your **advantage**. Connect **remotely** to the server and use **legitimate credentials**. The master told you that the login details will most likely one of these: **admin/password**, **admin/123456** or **admin/admin**. It's worth trying, isn't it?\n\nThe answer is the **entire command** for logging into the server.\n\nUse the command-line tool `ssh`.\n\nThe syntax is `ssh username@hostname_or_ip`, where the part after @ is the `hostname` or IP address of the device you want to connect to.\n\nTry one of the master's recommendations.",
       "answer" : "ssh admin@10.1.26.9",
-      "solution" : "```\nroot@attacker:~# ssh admin@10.1.26.9\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\nadmin@10.1.26.9's password: admin\n```",
+      "solution" : "```\nuser@attacker:~# ssh admin@10.1.26.9\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\nadmin@10.1.26.9's password: admin\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -385,7 +385,7 @@
       "order" : 0,
       "content" : "You are already logged in to the server. Now is the time to find something **exciting** and ideally **compromising**, but we don't know exactly what we are looking for. However... do you still remember the **list of services** running on the server based on the **Nmap scan**? You already discovered that the server runs the **NFS** service. **NFS** protocol is used for **file sharing** and **remote access** to files over a computer network. Maybe this server is used to back up data. Try to look whether the admin's home directory stores any files. Then, copy a useful file to your attacker machine.\n\nThe answer is the **name** of the **only ZIP file** (including the extension) located somewhere in the home directory.",
       "answer" : ".invoices2019.zip",
-      "solution" : "```\nroot@attacker:/home# scp admin@10.1.26.9:~/personal/.invoices2019.zip .\nadmin@10.1.26.9's password: admin\n```",
+      "solution" : "```\nuser@attacker:/home# scp admin@10.1.26.9:~/personal/.invoices2019.zip .\nadmin@10.1.26.9's password: admin\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -394,7 +394,7 @@
       "order" : 1,
       "content" : "You are already logged in to the server. Now is the time to find something **exciting** and ideally **compromising**, but we don't know exactly what we are looking for. However... do you still remember the **list of services** running on the server based on the **Nmap scan**? You already discovered that the server runs the **NFS** service. **NFS** protocol is used for **file sharing** and **remote access** to files over a computer network. Maybe this server is used to back up data. Try to look whether the admin's home directory stores any files. Then, copy a useful file to your attacker machine.\n\nThe answer is the **name** of the **only ZIP file** (including the extension) located somewhere in the home directory.\n\nUse **scp** tool to copy the file.\n\nUse this syntax for copying from remote to local machine:\n`scp @: /`",
       "answer" : ".invoices2019.zip",
-      "solution" : "```\nroot@attacker:/home# scp admin@10.1.26.9:~/personal/.invoices2019.zip .\nadmin@10.1.26.9's password: admin\n```",
+      "solution" : "```\nuser@attacker:/home# scp admin@10.1.26.9:~/personal/.invoices2019.zip .\nadmin@10.1.26.9's password: admin\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -403,7 +403,7 @@
       "order" : 2,
       "content" : "You are already logged in to the server. Now is the time to find something **exciting** and ideally **compromising**, but we don't know exactly what we are looking for. However... do you still remember the **list of services** running on the server based on the **Nmap scan**? You already discovered that the server runs the **NFS** service. **NFS** protocol is used for **file sharing** and **remote access** to files over a computer network. Maybe this server is used to back up data. Try to look whether the admin's home directory stores any files. Then, copy a useful file to your attacker machine.\n\nThe answer is the **name** of the **only ZIP file** (including the extension) located somewhere in the home directory.\n\nUse **scp** tool to copy the file.\n\nUse this syntax for copying from remote to local machine:\n`scp @: /`\n\nList directories and files including the hidden ones in the admin's `$HOME` directory (/home/admin).",
       "answer" : ".invoices2019.zip",
-      "solution" : "```\nroot@attacker:/home# scp admin@10.1.26.9:~/personal/.invoices2019.zip .\nadmin@10.1.26.9's password: admin\n```",
+      "solution" : "```\nuser@attacker:/home# scp admin@10.1.26.9:~/personal/.invoices2019.zip .\nadmin@10.1.26.9's password: admin\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -451,7 +451,7 @@
       "order" : 0,
       "content" : "You have found out that some **accounting** company's files have been uploaded to this server. And you have a ZIP file with a promising name in **your** hands, but unfortunately, it is **password-protected**!\nThe master advised you that a password cracking tool called **fcrackzip** was installed on his Kali machine. Find out how you could break the password and reveal the content of the ZIP. Use `man fcrackzip` rather than `fcrackzip -h` for **instructions** on the tool usage.\n\nThe answer is the **password** to the ZIP.\n\n",
       "answer" : "IhateMyJob",
-      "solution" : "```\nroot@attacker:~# fcrackzip -D -u -p /root/hacking/wordlist.txt .invoices2019.zip\n\nPASSWORD FOUND!!!!: pw == IhateMyJob\n\nroot@attacker:/home# unzip .invoices2019.zip\n\nArchive:  .invoices2019.zip\n   creating: .invoices2019/\n[.invoices2019.zip] invoices2019/TAX15796252.txt password: IhateMyJob\n```",
+      "solution" : "```\nuser@attacker:~# fcrackzip -D -u -p /home/user/hacking/wordlist.txt .invoices2019.zip\n\nPASSWORD FOUND!!!!: pw == IhateMyJob\n\nuser@attacker:/home# unzip .invoices2019.zip\n\nArchive:  .invoices2019.zip\n   creating: .invoices2019/\n[.invoices2019.zip] invoices2019/TAX15796252.txt password: IhateMyJob\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -460,7 +460,7 @@
       "order" : 1,
       "content" : "You have found out that some **accounting** company's files have been uploaded to this server. And you have a ZIP file with a promising name in **your** hands, but unfortunately, it is **password-protected**!\nThe master advised you that a password cracking tool called **fcrackzip** was installed on his Kali machine. Find out how you could break the password and reveal the content of the ZIP. Use `man fcrackzip` rather than `fcrackzip -h` for **instructions** on the tool usage.\n\nThe answer is the **password** to the ZIP.\n\nYou can perform a dictionary attack by using `-D` option of the `fcrackzip` command, but be aware that you have to use a **wordlist**. One is stored somewhere at your attacker machine.\n",
       "answer" : "IhateMyJob",
-      "solution" : "```\nroot@attacker:~# fcrackzip -D -u -p /root/hacking/wordlist.txt .invoices2019.zip\n\nPASSWORD FOUND!!!!: pw == IhateMyJob\n\nroot@attacker:/home# unzip .invoices2019.zip\n\nArchive:  .invoices2019.zip\n   creating: .invoices2019/\n[.invoices2019.zip] invoices2019/TAX15796252.txt password: IhateMyJob\n```",
+      "solution" : "```\nuser@attacker:~# fcrackzip -D -u -p /home/user/hacking/wordlist.txt .invoices2019.zip\n\nPASSWORD FOUND!!!!: pw == IhateMyJob\n\nuser@attacker:/home# unzip .invoices2019.zip\n\nArchive:  .invoices2019.zip\n   creating: .invoices2019/\n[.invoices2019.zip] invoices2019/TAX15796252.txt password: IhateMyJob\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
@@ -469,7 +469,7 @@
       "order" : 2,
       "content" : "You have found out that some **accounting** company's files have been uploaded to this server. And you have a ZIP file with a promising name in **your** hands, but unfortunately, it is **password-protected**!\nThe master advised you that a password cracking tool called **fcrackzip** was installed on his Kali machine. Find out how you could break the password and reveal the content of the ZIP. Use `man fcrackzip` rather than `fcrackzip -h` for **instructions** on the tool usage.\n\nThe answer is the **password** to the ZIP.\n\nYou can perform a dictionary attack by using `-D` option of the `fcrackzip` command, but be aware that you have to use a **wordlist**. One is stored somewhere at your attacker machine.\n\nIn hacking directory at your Kali, where you have already discovered it.",
       "answer" : "IhateMyJob",
-      "solution" : "```\nroot@attacker:~# fcrackzip -D -u -p /root/hacking/wordlist.txt .invoices2019.zip\n\nPASSWORD FOUND!!!!: pw == IhateMyJob\n\nroot@attacker:/home# unzip .invoices2019.zip\n\nArchive:  .invoices2019.zip\n   creating: .invoices2019/\n[.invoices2019.zip] invoices2019/TAX15796252.txt password: IhateMyJob\n```",
+      "solution" : "```\nuser@attacker:~# fcrackzip -D -u -p /home/user/hacking/wordlist.txt .invoices2019.zip\n\nPASSWORD FOUND!!!!: pw == IhateMyJob\n\nuser@attacker:/home# unzip .invoices2019.zip\n\nArchive:  .invoices2019.zip\n   creating: .invoices2019/\n[.invoices2019.zip] invoices2019/TAX15796252.txt password: IhateMyJob\n```",
       "incorrect_answer_limit" : 5,
       "modify_sandbox" : false,
       "sandbox_change_expected_duration" : 0
