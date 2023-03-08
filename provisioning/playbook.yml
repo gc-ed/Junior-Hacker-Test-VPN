@@ -13,6 +13,10 @@
   hosts: attacker
   become: yes
   roles:
+    - role: kypo-user-access
+      kypo_user_access_username: user
+      kypo_user_access_password: Password123
+      kypo_user_access_sudo: True
     - attacker
   pre_tasks:
     - name: "Workaround for enabling command logging"
@@ -88,14 +92,3 @@
         dest: /etc/bashrc.d/history.sh
         remote_src: yes
         mode: 0755
-  
-- name: user access
-  hosts:
-      - attacker
-  gather_facts: no
-  become: yes
-  roles:
-    - name: kypo-user-access
-      kypo_user_access_username: root
-      kypo_user_access_password: toor
-
