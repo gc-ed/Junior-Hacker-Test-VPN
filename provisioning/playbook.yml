@@ -17,10 +17,8 @@
       kypo_user_access_username: user
       kypo_user_access_password: Password123
       kypo_user_access_sudo: True
-    - attacker
-  pre_tasks:
-    - name: "Workaround for enabling command logging"
-      command: echo 'source /etc/profile > /root/.bashrc'
+    - role: attacker
+    - role: chrony
 
 - name: Configure server
   hosts: server
@@ -34,61 +32,11 @@
   roles:
     - client
 
-# Added by P.S.
-- name: Add MAN IP Fact
-  hosts: man
-  gather_facts: no
-  tasks:
-    - set_fact:
-        man_ip_address: '{{ ansible_host }}'
-
 - name: setup hosts logging roles
   hosts:
       - routers
       - hosts
-  gather_facts: yes
   become: yes
-  become_user: root
   roles:
-    - role: sandbox-logging-forward
-      slf_sandbox_name: "{{ kypo_global_sandbox_name }}"
-      slf_destination: "{{ hostvars['man'].man_ip_address }}"
-      slf_pool_id: "{{ kypo_global_pool_id }}"
-      slf_sandbox_id: "{{ kypo_global_sandbox_id }}"
-    - role: sandbox-logging-bash
-
-# - name: Fix BASH logging for root at attacker
-#  hosts: attacker
-#  become: yes
-#  tasks:
-#    - name: "Source all of ~/.bashrc.d/* to .bashrc"
-#      blockinfile:
-#       dest: "/etc/bash.bashrc"
-#       block: |
-#          if [ -d /etc/bashrc.d ]; then
-#          for f in /etc/bashrc.d/*.sh; do
-#              if [ -r $f ]; then
-#                  . $f
-#              fi
-#          done
-#          unset f
-#          fi
-#       marker: '# {mark} source bashrc.d'
-#       insertafter: EOF
-#       create: no
-#    - name: Ensures /etc/bashrc.d/ exists
-#      file:
-#        path: "/etc/bashrc.d/"
-#        state: "directory"
-#    - name: "Setup bash command monitoring"
-#      copy:
-#        src: /etc/profile.d/log_commands.sh
-#        dest: /etc/bashrc.d/log_commands.sh
-#        remote_src: yes
-#        mode: 0644
-#    - name: "Add history configuration to /etc/bashrc.d/history.sh"
-#      copy:
-#        src: /etc/profile.d/history.sh
-#        dest: /etc/bashrc.d/history.sh
-#        remote_src: yes
-#        mode: 0755
+    - role: sandbox-logging
+      slf_destination_port: '{% if hostvars["man"] is defined -%} 514 {%- else -%} 515 {%- endif %}'
