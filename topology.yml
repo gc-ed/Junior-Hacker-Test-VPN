@@ -1,4 +1,4 @@
-name: junior-hacker-adaptive-sandbox
+name: kypo-library-junior-hacker-adaptive
 
 hosts:
   - name: attacker
