@@ -46,6 +46,9 @@ Vagrant.configure("2") do |config|
     device.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "provisioning/playbook.yml"
       ansible.groups = ansible_groups
+      ansible.galaxy_role_file = "provisioning/requirements.yml"
+      ansible.galaxy_roles_path = "provisioning/roles"
+      ansible.galaxy_command = "sudo ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path} --force"
       ansible.limit = "router"
     end
   end
@@ -74,6 +77,9 @@ Vagrant.configure("2") do |config|
     device.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "provisioning/playbook.yml"
       ansible.groups = ansible_groups
+      ansible.galaxy_role_file = "provisioning/requirements.yml"
+      ansible.galaxy_roles_path = "provisioning/roles"
+      ansible.galaxy_command = "sudo ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path} --force"
       ansible.limit = "attacker"
     end
   end
@@ -102,6 +108,9 @@ Vagrant.configure("2") do |config|
     device.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "provisioning/playbook.yml"
       ansible.groups = ansible_groups
+      ansible.galaxy_role_file = "provisioning/requirements.yml"
+      ansible.galaxy_roles_path = "provisioning/roles"
+      ansible.galaxy_command = "sudo ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path} --force"
       ansible.limit = "server"
     end
   end
@@ -130,6 +139,9 @@ Vagrant.configure("2") do |config|
     device.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "provisioning/playbook.yml"
       ansible.groups = ansible_groups
+      ansible.galaxy_role_file = "provisioning/requirements.yml"
+      ansible.galaxy_roles_path = "provisioning/roles"
+      ansible.galaxy_command = "sudo ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path} --force"
       ansible.limit = "client"
     end
   end
