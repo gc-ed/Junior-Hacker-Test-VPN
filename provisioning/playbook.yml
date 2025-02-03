@@ -13,10 +13,10 @@
   hosts: attacker
   become: yes
   roles:
-    - role: kypo-user-access
-      kypo_user_access_username: user
-      kypo_user_access_password: Password123
-      kypo_user_access_sudo: True
+    - role: user-access
+      user_access_username: user
+      user_access_password: Password123
+      user_access_sudo: True
     - role: attacker
     - role: chrony
 
@@ -34,8 +34,8 @@
 
 - name: setup hosts logging roles
   hosts:
-      - routers
-      - hosts
+    - routers
+    - hosts
   become: yes
   roles:
     - role: sandbox-logging

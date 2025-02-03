@@ -3,8 +3,7 @@
 
 - name: Install net-tools and unzip
   apt:
-    name: 
+    name:
       - net-tools
       - unzip
-...
-
+    update_cache: yes

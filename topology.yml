@@ -1,4 +1,4 @@
-name: kypo-library-junior-hacker-adaptive
+name: library-junior-hacker-adaptive
 
 hosts:
   - name: attacker
@@ -9,14 +9,14 @@ hosts:
 
   - name: server
     base_box:
-      image: debian-10
+      image: debian-12-x86_64
       man_user: debian
     flavor: standard.small
     hidden: True
 
   - name: client
     base_box:
-      image: debian-10
+      image: debian-12-x86_64
       man_user: debian
     flavor: standard.small
     hidden: True
@@ -24,7 +24,7 @@ hosts:
 routers:
   - name: router
     base_box:
-      image: debian-10
+      image: debian-12-x86_64
       man_user: debian
     flavor: standard.small
 
@@ -36,22 +36,22 @@ networks:
     cidr: 10.1.27.0/24
 
 net_mappings:
-    - host: attacker
-      network: attacker-switch
-      ip: 10.1.27.23
-    - host: server
-      network: target-switch
-      ip: 10.1.26.9
-    - host: client
-      network: target-switch
-      ip: 10.1.26.4
+  - host: attacker
+    network: attacker-switch
+    ip: 10.1.27.23
+  - host: server
+    network: target-switch
+    ip: 10.1.26.9
+  - host: client
+    network: target-switch
+    ip: 10.1.26.4
 
 router_mappings:
-    - router: router
-      network: target-switch
-      ip: 10.1.26.1
-    - router: router
-      network: attacker-switch
-      ip: 10.1.27.1
+  - router: router
+    network: target-switch
+    ip: 10.1.26.1
+  - router: router
+    network: attacker-switch
+    ip: 10.1.27.1
 
 groups: []
