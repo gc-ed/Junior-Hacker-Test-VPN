@@ -40,14 +40,14 @@
     state: directory
     owner: admin
     group: admin
-    mode: 700
+    mode: '700'
 
 - name: Copy files into /home/admin/personal
   copy:
     src: "{{ item }}"
     dest: /home/admin/personal
     owner: admin
-    mode: 640
+    mode: '640'
   with_items:
     - .invoices2019.zip
     - Croatia 2019
