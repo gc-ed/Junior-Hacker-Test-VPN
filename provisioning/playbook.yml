@@ -20,18 +20,6 @@
     - role: attacker
     - role: chrony
 
-- name: Configure server
-  hosts: server
-  become: yes
-  roles:
-    - server
-
-- name: Configure client
-  hosts: client
-  become: yes
-  roles:
-    - client
-
 - name: setup hosts logging roles
   hosts:
     - routers
