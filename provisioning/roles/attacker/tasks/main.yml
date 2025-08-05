@@ -4,27 +4,6 @@
     path: /etc/hosts
     line: "{{ item.value }} {{ item.key }}"
 
-- name: Add zip's password to the fasttrack wordlist
-  lineinfile:
-    path: /usr/share/wordlists/fasttrack.txt
-    line: IhateMyJob
-
-- name: Create /home/user/hacking directory
-  file:
-    path: /home/user/hacking
-    state: directory
-    owner: user
-    group: user
-    mode: '0700'
-
-- name: Copy and rename the wordlist to /root/hacking
-  copy:
-    src: /usr/share/wordlists/fasttrack.txt
-    dest: /home/user/hacking/wordlist.txt
-    owner: user
-    mode: '0640'
-    remote_src: yes
-
 - name: Install required packages
   ansible.builtin.apt:
     name:
@@ -36,10 +15,6 @@
       - npm
       - python3-lxml
     state: present
-  retries: 3
-  delay: 5
-  until: apt_install is success
-  ignore_errors: true
 
 - name: Clone Caldera repository
   git:
