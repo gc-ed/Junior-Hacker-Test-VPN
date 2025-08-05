@@ -14,6 +14,7 @@
       - nodejs
       - npm
       - python3-lxml
+      - ufw
     state: present
 
 - name: Clone Caldera repository
