@@ -1,4 +1,48 @@
 ---
-# Basic configuration of all defined devices
+- name: Configure SIEM node
+  hosts: siem-node
+  become: true
+  roles:
+    - siem_node
 
-# Installation and configuration of each host
+- name: Configure SOAR node
+  hosts: soar-node
+  become: true
+  roles:
+    - soar_node
+
+- name: Configure CICMS node
+  hosts: cicms-node
+  become: true
+  roles:
+    - cicms_node
+
+- name: Configure CTI node
+  hosts: cti-node
+  become: true
+  roles:
+    - cti_node
+
+- name: Configure Linux target
+  hosts: lin-target
+  become: true
+  roles:
+    - lin_target
+
+- name: Configure analyst workstation
+  hosts: analyst-ws
+  become: true
+  roles:
+    - analyst_ws
+
+- name: Configure router
+  hosts: router
+  become: true
+  roles:
+    - router
+
+- name: Configure Windows target
+  hosts: win-target
+  gather_facts: false
+  roles:
+    - win_target
