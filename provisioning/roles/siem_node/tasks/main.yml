@@ -1,0 +1,82 @@
+- name: Configure static IP for siem-node
+  ansible.builtin.import_role:
+    name: static_ip
+  vars:
+    interface_name: "{{ interface_name }}"
+    static_ip: "{{ static_ip }}"
+    dns_servers: "{{ dns_servers }}"
+- name: Add Elastic GPG key
+  ansible.builtin.apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add Elastic repository
+  ansible.builtin.apt_repository:
+    repo: "deb {{ siem_node_elastic_repo_url }} stable main"
+    filename: 'elastic'
+    state: present
+
+- name: Add Wazuh GPG key
+  ansible.builtin.apt_key:
+    url: https://packages.wazuh.com/key/GPG-KEY-WAZUH
+    state: present
+
+- name: Add Wazuh repository
+  ansible.builtin.apt_repository:
+    repo: "deb {{ siem_node_wazuh_repo_url }} main"
+    filename: 'wazuh'
+    state: present
+
+- name: Add BIPS repository
+  ansible.builtin.apt_repository:
+    repo: "deb {{ siem_node_bips_repo_url }} main"
+    filename: 'bips'
+    state: present
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install Elasticsearch
+  ansible.builtin.apt:
+    name: "elasticsearch={{ siem_node_elastic_version }}"
+    state: present
+
+- name: Install Kibana
+  ansible.builtin.apt:
+    name: "kibana={{ siem_node_kibana_version }}"
+    state: present
+
+- name: Install Wazuh agent
+  ansible.builtin.apt:
+    name: "wazuh-agent={{ siem_node_wazuh_version }}"
+    state: present
+
+- name: Install BIPS agent
+  ansible.builtin.apt:
+    name: "bips={{ siem_node_bips_version }}"
+    state: present
+
+- name: Enable and start Elasticsearch service
+  ansible.builtin.systemd:
+    name: elasticsearch
+    enabled: true
+    state: started
+
+- name: Enable and start Kibana service
+  ansible.builtin.systemd:
+    name: kibana
+    enabled: true
+    state: started
+
+- name: Enable and start Wazuh agent service
+  ansible.builtin.systemd:
+    name: wazuh-agent
+    enabled: true
+    state: started
+
+- name: Enable and start BIPS service
+  ansible.builtin.systemd:
+    name: bips
+    enabled: true
+    state: started

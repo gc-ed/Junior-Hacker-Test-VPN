@@ -1,0 +1,51 @@
+- name: Configure static IP for cti-node
+  ansible.builtin.import_role:
+    name: static_ip
+  vars:
+    interface_name: "{{ interface_name }}"
+    static_ip: "{{ static_ip }}"
+    dns_servers: "{{ dns_servers }}"
+
+- name: Install prerequisites for MISP
+  ansible.builtin.apt:
+    name:
+      - curl
+      - gnupg
+      - git
+      - apache2
+      - mysql-server
+      - php
+      - php-mysql
+      - php-cli
+      - php-xml
+      - php-mbstring
+      - php-redis
+      - redis-server
+    state: present
+    update_cache: true
+
+- name: Clone MISP core repository
+  ansible.builtin.git:
+    repo: https://github.com/MISP/MISP.git
+    dest: "/var/www/MISP"
+    version: 2.4
+
+- name: Set permissions on MISP directory
+  ansible.builtin.file:
+    path: "/var/www/MISP"
+    recurse: true
+    state: directory
+    owner: www-data
+    group: www-data
+
+- name: Enable and start Apache
+  ansible.builtin.systemd:
+    name: apache2
+    enabled: true
+    state: started
+
+- name: Enable and start Redis
+  ansible.builtin.systemd:
+    name: redis-server
+    enabled: true
+    state: started

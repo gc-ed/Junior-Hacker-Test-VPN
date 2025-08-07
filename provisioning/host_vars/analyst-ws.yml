@@ -1,0 +1,8 @@
+ansible_host: 172.25.10.100
+ansible_user: root
+ansible_ssh_pass: YourPassword
+static_ip: 172.25.10.100/24
+interface_name: eth1
+dns_servers:
+  - "172.16.217.5"
+  - "172.16.217.6"

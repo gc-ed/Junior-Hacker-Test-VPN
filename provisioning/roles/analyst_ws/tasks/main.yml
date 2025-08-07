@@ -1,0 +1,13 @@
+- name: Configure static IP on analyst workstation
+  ansible.builtin.import_role:
+    name: static_ip
+  vars:
+    interface_name: "{{ interface_name }}"
+    static_ip: "{{ static_ip }}"
+    dns_servers: "{{ dns_servers }}"
+
+- name: Copy YARA detection rule
+  ansible.builtin.copy:
+    src: malwaresim_detect.yar
+    dest: /root/malwaresim_detect.yar
+    mode: '0644'

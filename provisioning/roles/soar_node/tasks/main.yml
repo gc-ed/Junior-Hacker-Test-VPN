@@ -1,0 +1,41 @@
+- name: Configure static IP for soar-node
+  ansible.builtin.import_role:
+    name: static_ip
+  vars:
+    interface_name: "{{ interface_name }}"
+    static_ip: "{{ static_ip }}"
+    dns_servers: "{{ dns_servers }}"
+
+- name: Add Elasticsearch GPG key
+  ansible.builtin.apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add TheHive and Cortex repository
+  ansible.builtin.apt_repository:
+    repo: "deb https://deb.strangebee.com stable main"
+    state: present
+    filename: 'thehive'
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Install TheHive and Cortex
+  ansible.builtin.apt:
+    name:
+      - thehive4
+      - cortex
+    state: present
+
+- name: Enable and start TheHive service
+  ansible.builtin.systemd:
+    name: thehive
+    enabled: true
+    state: started
+
+- name: Enable and start Cortex service
+  ansible.builtin.systemd:
+    name: cortex
+    enabled: true
+    state: started

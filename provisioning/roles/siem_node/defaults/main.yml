@@ -1,0 +1,8 @@
+# Default versions and repository URLs for the SIEM stack
+siem_node_elastic_repo_url: "https://artifacts.elastic.co/packages/8.x/apt"
+siem_node_elastic_version: "8.11.0"
+siem_node_kibana_version: "8.11.0"
+siem_node_wazuh_repo_url: "https://packages.wazuh.com/4.x/apt/"
+siem_node_wazuh_version: "4.6.0-1"
+siem_node_bips_repo_url: "https://packages.example.com/bips"
+siem_node_bips_version: "1.0"

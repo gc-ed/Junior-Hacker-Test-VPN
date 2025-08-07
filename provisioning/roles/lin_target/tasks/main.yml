@@ -1,0 +1,19 @@
+- name: Configure static IP for lin-target
+  ansible.builtin.import_role:
+    name: static_ip
+  vars:
+    interface_name: "{{ interface_name }}"
+    static_ip: "{{ static_ip }}"
+    dns_servers: "{{ dns_servers }}"
+
+- name: Copy malware simulation script
+  ansible.builtin.copy:
+    src: malware_sim_linux.sh
+    dest: /tmp/malware_sim_linux.sh
+    mode: '0755'
+
+- name: Run malware simulation script
+  ansible.builtin.command: /tmp/malware_sim_linux.sh
+  args:
+    creates: /tmp/malsim.log
+  changed_when: false

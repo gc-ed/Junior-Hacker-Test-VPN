@@ -1,0 +1,9 @@
+- name: Copy netplan configuration
+  ansible.builtin.template:
+    src: netplan.yaml.j2
+    dest: /etc/netplan/01-netcfg.yaml
+    mode: '0644'
+
+- name: Apply Netplan configuration
+  ansible.builtin.command: netplan apply
+  changed_when: false

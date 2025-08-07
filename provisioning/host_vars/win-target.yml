@@ -1,0 +1,6 @@
+ansible_host: 172.25.10.50
+ansible_user: Administrator
+ansible_password: YourPasswordWin
+ansible_connection: winrm
+ansible_winrm_transport: basic
+static_ip: 172.25.10.50/24

@@ -1,0 +1,29 @@
+- name: Configure static IP for cicms-node
+  ansible.builtin.import_role:
+    name: static_ip
+  vars:
+    interface_name: "{{ interface_name }}"
+    static_ip: "{{ static_ip }}"
+    dns_servers: "{{ dns_servers }}"
+
+- name: Install required packages for IRIS
+  ansible.builtin.apt:
+    name:
+      - git
+      - docker.io
+      - docker-compose
+    state: present
+    update_cache: true
+
+- name: Clone IRIS repository
+  ansible.builtin.git:
+    repo: "https://github.com/dfir-iris/iris-docker.git"
+    dest: "/opt/iris-docker"
+    update: false
+    version: main
+
+- name: Start IRIS with docker-compose
+  ansible.builtin.command: docker-compose up -d
+  args:
+    chdir: "/opt/iris-docker"
+  changed_when: false

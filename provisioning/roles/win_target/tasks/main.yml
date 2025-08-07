@@ -1,0 +1,50 @@
+- name: Get disconnected interfaces (no IP or APIPA)
+  ansible.windows.win_shell: |
+    Get-NetAdapter | Where-Object {
+      ($_.Status -eq 'Up') -and (
+        -not (Get-NetIPAddress -InterfaceAlias $_.Name -AddressFamily IPv4 -ErrorAction SilentlyContinue) -or
+        (Get-NetIPAddress -InterfaceAlias $_.Name -AddressFamily IPv4 | Where-Object { $_.IPAddress -like '169.254.*' })
+      )
+    } | Select-Object -ExpandProperty Name
+  register: lab_interface_info
+  changed_when: false
+
+- name: Fail if no available lab interface
+  ansible.builtin.fail:
+    msg: "No available secondary interface (disconnected or APIPA only) found."
+  when: lab_interface_info.stdout_lines | length == 0
+
+- name: Set lab interface (first suitable)
+  ansible.builtin.set_fact:
+    lab_interface: "{{ lab_interface_info.stdout_lines[0] }}"
+
+- name: Extract static IP and prefix length
+  ansible.builtin.set_fact:
+    lab_ip: "{{ static_ip.split('/')[0] }}"
+    lab_prefix: "{{ static_ip.split('/')[1] | int if '/' in static_ip else 24 }}"
+
+- name: Assign static IP to lab interface
+  ansible.windows.win_shell: |
+    New-NetIPAddress -InterfaceAlias "{{ lab_interface }}" `
+                     -IPAddress "{{ lab_ip }}" `
+                     -PrefixLength "{{ lab_prefix }}" `
+                     -AddressFamily IPv4
+
+- name: Set DNS servers on lab interface
+  ansible.windows.win_shell: |
+    Set-DnsClientServerAddress -InterfaceAlias "{{ lab_interface }}" `
+                               -ServerAddresses ("172.16.217.5","172.16.217.6")
+- name: Create directory for malware simulator
+  ansible.windows.win_file:
+    path: C:\MalwareSim
+    state: directory
+
+- name: Copy Invoke-MalwareSim script
+  ansible.windows.win_copy:
+    src: Invoke-MalwareSim.ps1
+    dest: C:\MalwareSim\Invoke-MalwareSim.ps1
+
+- name: Execute malware simulation
+  ansible.windows.win_shell: powershell.exe -ExecutionPolicy Bypass -File C:\MalwareSim\Invoke-MalwareSim.ps1
+  args:
+    chdir: C:\MalwareSim

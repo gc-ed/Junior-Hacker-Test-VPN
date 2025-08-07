@@ -1,0 +1,50 @@
+- name: Configure static IPs for router
+  ansible.builtin.import_role:
+    name: static_ip
+  vars:
+    interfaces:
+      - name: "{{ corp_interface }}"
+        ip: "{{ static_ip }}"
+        dns_servers: "{{ dns_servers | default([]) }}"
+      - name: "{{ inet_interface }}"
+        ip: "{{ external_ip }}"
+
+- name: Enable IP forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present
+    reload: true
+
+- name: Install iptables-persistent package
+  ansible.builtin.apt:
+    name: iptables-persistent
+    state: present
+    update_cache: true
+
+- name: Set up NAT masquerading
+  ansible.builtin.command: iptables -t nat -A POSTROUTING -o {{ inet_interface }} -j MASQUERADE
+  args:
+    creates: /etc/iptables_nat_configured
+  changed_when: false
+
+- name: Allow forwarding from corp-net
+  ansible.builtin.command: iptables -A FORWARD -i {{ corp_interface }} -o {{ inet_interface }} -j ACCEPT
+  args:
+    creates: /etc/iptables_nat_configured
+  changed_when: false
+
+- name: Allow established connections back to corp-net
+  ansible.builtin.command: iptables -A FORWARD -i {{ inet_interface }} -o {{ corp_interface }} -m state --state RELATED,ESTABLISHED -j ACCEPT
+  args:
+    creates: /etc/iptables_nat_configured
+  changed_when: false
+
+- name: Mark iptables rules configured
+  ansible.builtin.file:
+    path: /etc/iptables_nat_configured
+    state: touch
+
+- name: Save iptables rules
+  ansible.builtin.command: netfilter-persistent save
+  changed_when: false
