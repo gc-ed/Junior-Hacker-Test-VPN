@@ -2,10 +2,3 @@
 # Basic configuration of all defined devices
 
 # Installation and configuration of each host
-- name: setup hosts logging roles
-  hosts:
-    - routers
-  become: yes
-  roles:
-    - role: sandbox-logging
-      slf_destination_port: '{% if hostvars["man"] is defined -%} 514 {%- else -%} 515 {%- endif %}'
