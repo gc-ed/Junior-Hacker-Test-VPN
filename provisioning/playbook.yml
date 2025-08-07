@@ -5,7 +5,6 @@
 - name: setup hosts logging roles
   hosts:
     - routers
-    - hosts
   become: yes
   roles:
     - role: sandbox-logging
