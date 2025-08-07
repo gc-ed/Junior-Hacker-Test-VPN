@@ -1,26 +1,69 @@
-name: test
+name: malwarecontain-sandbox
 hosts:
-  - name: win-10
+  - name: siem-node
+    base_box:
+      image: ubuntu-noble-x86_64
+    mgmt_user: ubuntu
+    flavor: standard.medium
+  - name: soar-node
+    base_box:
+      image: ubuntu-noble-x86_64
+    mgmt_user: ubuntu
+    flavor: standard.medium
+  - name: cicms-node
+    base_box:
+      image: ubuntu-noble-x86_64
+    mgmt_user: ubuntu
+    flavor: standard.medium
+  - name: cti-node
+    base_box:
+      image: ubuntu-noble-x86_64
+    mgmt_user: ubuntu
+    flavor: standard.medium
+  - name: win-target
     base_box:
       image: windows-10
-      mgmt_user: windows
+    mgmt_user: windows
+    flavor: standard.large
+  - name: lin-target
+    base_box:
+      image: ubuntu-noble-x86_64
+    mgmt_user: ubuntu
     flavor: standard.medium
-routers: 
+  - name: analyst-ws
+    base_box:
+      image: kali
+    mgmt_user: debian
+    flavor: standard.medium
   - name: router
     base_box:
       image: debian-12-x86_64
-      mgmt_user: debian
+    mgmt_user: kypo
     flavor: standard.small
 networks:
-  - name: enterprisetestnet
-    cidr: 10.0.1.0/24
-    accessible_by_user: true
-net_mappings:
-  - host: win-10
-    network: enterprisetestnet
-    ip: 10.0.1.65
-router_mappings: 
-  - router: router
-    network: enterprisetestnet
-    ip: 10.0.1.1
-groups: []
+  - name: corp-net
+hosts_nets:
+  - host: siem-node
+    network: corp-net
+    ip: 10.10.10.10
+  - host: soar-node
+    network: corp-net
+    ip: 10.10.10.11
+  - host: cicms-node
+    network: corp-net
+    ip: 10.10.10.12
+  - host: cti-node
+    network: corp-net
+    ip: 10.10.10.13
+  - host: win-target
+    network: corp-net
+    ip: 10.10.10.50
+  - host: lin-target
+    network: corp-net
+    ip: 10.10.10.60
+  - host: analyst-ws
+    network: corp-net
+    ip: 10.10.10.100
+  - host: router
+    network: corp-net
+    ip: 10.10.10.1
