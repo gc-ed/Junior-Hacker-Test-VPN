@@ -9,17 +9,6 @@
     - hosts
 
 # Installation and configuration of each host
-- name: Configure attacker
-  hosts: attacker
-  become: yes
-  roles:
-    - role: user-access
-      user_access_username: user
-      user_access_password: Password123
-      user_access_sudo: True
-    - role: attacker
-    - role: chrony
-
 - name: setup hosts logging roles
   hosts:
     - routers
