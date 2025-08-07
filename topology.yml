@@ -1,4 +1,4 @@
-name: operation-redtrace
+name: test
 hosts:
   - name: win-10
     base_box:
