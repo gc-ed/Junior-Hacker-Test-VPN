@@ -12,15 +12,15 @@ routers:
       mgmt_user: debian
     flavor: standard.small
 networks:
-  - name: enterprisenet
-    cidr: 10.0.0.0/24
+  - name: enterprisetestnet
+    cidr: 10.0.1.0/24
     accessible_by_user: true
 net_mappings:
   - host: win-10
-    network: enterprisenet
-    ip: 10.0.0.65
+    network: enterprisetestnet
+    ip: 10.0.1.65
 router_mappings: 
   - router: router
-    network: enterprisenet
-    ip: 10.0.0.1
+    network: enterprisetestnet
+    ip: 10.0.1.1
 groups: []
