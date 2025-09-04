@@ -53,6 +53,6 @@
     published_ports: [8080:80, 40443:443] 
   register: container_output
 
-- name: Show output
+- name: Show container output
   ansible.builtin.debug:
-    msg: "{{ output.container.Output }}"
+    msg: "{{ container_output.container.Output | default('No output captured') }}"
