@@ -1,43 +1,58 @@
 ---
 - name: Install docker dependancies
-  tasks:
-    - name: Install dependencies
-      apt:
-        name: "{{ item }}"
-        state: present
-      loop:
-        - apt-transport-https
-        - ca-certificates
-        - curl
-        - gnupg
-        - lsb-release
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+    update_cache: yes
         
 - name: Add Docker GPG key
-  apt_key:
+  ansible.builtin.get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
+    dest: /etc/apt/trusted.gpg.d/docker.gpg
+    mode: '0644'
 
 - name: Add Docker APT repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
     state: present
+    filename: docker
 
 - name: Install Docker Engine
-    apt:
-      name: docker-ce
-      state: present
-      update_cache: true
+  ansible.builtin.apt:
+    name: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+    update_cache: yes
+
+- name: Ensure Docker service is started and enabled
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes
 
 - name: Pull image
-      community.docker.docker_image_pull:
-        name: activecm/rita
-        tag: 4.3.1
+    community.docker.docker_image:
+      name: activecm/rita
+      tag: latest
+      source: pull
 
-    - name: Start container
-      community.docker.docker_container:
-        detach: true
-        image: activecm/rita:4.3.1
+- name: Run RITA container
+  community.docker.docker_container:
+    name: rita-container
+    image: activecm/rita:latest
+    state: started
+    detach: yes
+    restart_policy: always
+    published_ports: [8080:80, 40443:443] 
+  register: container_output
 
-    - name: Show output
-      ansible.builtin.debug:
-        msg: "{{ output.container.Output }}"
+- name: Show output
+    ansible.builtin.debug:
+    msg: "{{ output.container.Output }}"
