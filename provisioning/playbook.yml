@@ -1,5 +1,5 @@
 ---
-- name: Configure SIEM node with Wazuh manager
+- name: Configuring Docker-Server
   hosts: docker-server
   become: yes
   roles:
