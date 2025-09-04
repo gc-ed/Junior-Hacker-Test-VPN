@@ -56,7 +56,7 @@
 
 - name: Download RITA ZIP
   ansible.builtin.get_url:
-    url: "{{ https://www.dropbox.com/scl/fi/dgo2o8fe54fcx98x9yqyt/rita-docker.zip?rlkey=6nonjhx0nx3g2wvpdg94vwfkm&st=ipu4z0jp&dl=0 }}"
+    url: "{{ https://www.dropbox.com/scl/fi/dgo2o8fe54fcx98x9yqyt/rita-docker.zip?rlkey=6nonjhx0nx3g2wvpdg94vwfkm&st=ipu4z0jp&dl=1 }}"
     dest: /tmp/rita-docker.zip
     mode: '0644'
 
