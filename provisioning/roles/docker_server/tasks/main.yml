@@ -56,7 +56,7 @@
 
 - name: Download RITA ZIP from Google Drive
   ansible.builtin.get_url:
-    url: "{{ https://drive.google.com/file/d/1ewsFykMFZNYz1baTTy3iYkVB72_4iaM3/view?usp=sharing }}"
+    url: "{{ https://drive.google.com/uc?export=download&id=1ewsFykMFZNYz1baTTy3iYkVB72_4iaM3 }}"
     dest: /tmp/rita-docker.zip
     mode: '0644'
 
