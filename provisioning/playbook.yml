@@ -1,4 +1,7 @@
 ---
-# Basic configuration of all defined devices
+- name: Configure SIEM node with Wazuh manager
+  hosts: docker-server
+  become: yes
+  roles:
+    - docker_server
 
-# Installation and configuration of each host
