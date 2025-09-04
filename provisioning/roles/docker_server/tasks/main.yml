@@ -54,5 +54,5 @@
   register: container_output
 
 - name: Show output
-    ansible.builtin.debug:
+  ansible.builtin.debug:
     msg: "{{ output.container.Output }}"
