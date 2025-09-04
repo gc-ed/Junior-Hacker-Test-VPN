@@ -38,10 +38,10 @@
     enabled: yes
 
 - name: Pull image
-    community.docker.docker_image:
-      name: activecm/rita
-      tag: latest
-      source: pull
+  community.docker.docker_image:
+    name: activecm/rita
+    tag: latest
+    source: pull
 
 - name: Run RITA container
   community.docker.docker_container:
