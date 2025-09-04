@@ -24,7 +24,7 @@ net_mappings:
   - host: kali
     network: testnet
     ip: 10.0.12.50
-  - name: docker-server
+  - host: docker-server
     network: testnet
     ip: 10.0.12.60
 router_mappings: 
