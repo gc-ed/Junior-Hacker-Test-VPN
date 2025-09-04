@@ -48,25 +48,23 @@
     state: started
     enabled: yes
 
-
-
-
-- name: Pull image
+- name: Pull Nginx Docker image
   community.docker.docker_image:
-    name: activecm/rita
+    name: nginx
     tag: latest
     source: pull
     state: present
   register: image_pull
 
-- name: Run RITA container
+- name: Run Nginx container
   community.docker.docker_container:
-    name: rita-container
-    image: activecm/rita:latest
+    name: nginx-container
+    image: nginx:latest
     state: started
     detach: yes
     restart_policy: always
-    published_ports: [8080:80, 40443:443] 
+    published_ports:
+      - "80:80"  # Expose Nginx default port
   register: container_output
 
 - name: Show container output
