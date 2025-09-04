@@ -1,9 +1,14 @@
-name: test
+name: docker-test
 hosts:
-  - name: win-10
+  - name: kali
     base_box:
-      image: windows-10
-      mgmt_user: windows
+      image: kali
+      mgmt_user: debian
+    flavor: standard.medium
+  - name: dockerserver
+    base_box:
+      image: ubuntu-noble-x86_64
+      mgmt_user: ubuntu
     flavor: standard.medium
 routers: 
   - name: router
@@ -12,15 +17,18 @@ routers:
       mgmt_user: debian
     flavor: standard.small
 networks:
-  - name: enterprisetestnet
-    cidr: 10.0.1.0/24
+  - name: testnet
+    cidr: 10.0.12.0/24
     accessible_by_user: true
 net_mappings:
-  - host: win-10
-    network: enterprisetestnet
-    ip: 10.0.1.65
+  - host: kali
+    network: testnet
+    ip: 10.0.12.50
+  - name: dockerserver
+    network: testnet
+    ip: 10.0.12.60
 router_mappings: 
   - router: router
-    network: enterprisetestnet
-    ip: 10.0.1.1
+    network: testnet
+    ip: 10.0.12.1
 groups: []
