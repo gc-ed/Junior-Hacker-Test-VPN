@@ -5,7 +5,7 @@ hosts:
       image: kali
       mgmt_user: debian
     flavor: standard.medium
-  - name: dockerserver
+  - name: docker-server
     base_box:
       image: ubuntu-noble-x86_64
       mgmt_user: ubuntu
@@ -24,7 +24,7 @@ net_mappings:
   - host: kali
     network: testnet
     ip: 10.0.12.50
-  - name: dockerserver
+  - name: docker-server
     network: testnet
     ip: 10.0.12.60
 router_mappings: 
