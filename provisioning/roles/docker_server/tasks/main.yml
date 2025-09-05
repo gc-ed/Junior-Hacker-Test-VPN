@@ -62,7 +62,7 @@
 
 - name: Mount Samba share
   ansible.posix.mount:
-    src: "{{ //10.250.232.84/Shared/rita-docker.zip }}"
+    src: "//10.250.232.84/Shared/rita-docker.zip"
     path: /mnt/samba
     fstype: cifs
     opts: "guest"
