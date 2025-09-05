@@ -54,6 +54,32 @@
     state: directory
     mode: '0755'
 
+- name: Create mount point for Samba share
+  ansible.builtin.file:
+    path: /mnt/samba
+    state: directory
+    mode: '0755'
+
+- name: Mount Samba share
+  ansible.posix.mount:
+    src: "{{ //10.250.232.84/Shared/rita-docker.zip }}"
+    path: /mnt/samba
+    fstype: cifs
+    opts: "guest"
+    state: mounted
+
+- name: Copy RITA ZIP from Samba share
+  ansible.builtin.copy:
+    src: /mnt/samba/rita-docker.zip
+    dest: /tmp/rita-docker.zip
+    mode: '0644'
+    remote_src: yes
+
+- name: Unmount Samba share
+  ansible.posix.mount:
+    path: /mnt/samba
+    state: absent
+
 - name: Download RITA ZIP
   ansible.builtin.get_url:
     url: "https://drive.google.com/uc?export=download&id=1zDQbQ6ZD_HUtlpO5EWA1nMxf9hAZ_wV6&confirm=t"
