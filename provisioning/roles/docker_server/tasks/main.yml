@@ -5,6 +5,8 @@
       - ca-certificates
       - curl
       - smbclient
+      - cifs-util
+      - unzip
     state: present
     update_cache: yes
 
