@@ -55,6 +55,12 @@
   tasks:
     - name: Create mount point
       ansible.builtin.file:
+        path: "/mnt/smb_shared"
+        state: directory
+        mode: "0775"
+    
+    - name: Mount SMB Share (guest)
+      ansible.builtin.mount:
         src: "//10.250.232.181/shared"
         path: "/mnt/smb_shared"
         fstype: cifs
