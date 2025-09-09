@@ -79,6 +79,13 @@
     remote_src: true
     extra_opts: ["-o"]
 
+- name: Unzip rita frontend dist.zip
+  ansible.builtin.copy:
+    src: "/opt/rita-docker/frontend-container/rita-frontend/dist.zip"
+    dest: "/opt/rita-docker/frontend-container/rita-frontend"
+    remote_src: true
+    extra_opts: ["-o"]
+
 - name: Ensure RITA Docker network exists
   community.docker.docker_network:
     name: rita-network
