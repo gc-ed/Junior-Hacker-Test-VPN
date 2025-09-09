@@ -81,7 +81,7 @@
   
 - name: Build and run RITA backend services
   community.docker.docker_compose_v2:
-    project_src: /opt/rita-docker/backend-container
+    project_src: "/opt/rita-docker/backend-container"
     state: present
     built: yes
   register: backend_compose_output
