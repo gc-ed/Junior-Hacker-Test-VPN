@@ -51,3 +51,70 @@
     state: started
     enabled: yes
 
+- name: Deploy rita-docker from guest SMB share
+  vars:
+    smb_server: "10.250.232.181"
+    smb_share: "shared"
+    mount_point: "/mnt/smb_shared"
+    zip_name: "rita-docker.zip"
+    dest_dir: "/opt/"
+    smb_opts: "guest,vers=3.0"
+    compose_dirs:
+      - backend-containers
+      - tools-containers
+      - frontend-containers
+  tasks:
+    - name: Create mount point
+      ansible.builtin.file:
+        src: "//{{ smb_server }}/{{ smb_share }}"
+        path: "{{ mount_point }}"
+        fstype: cifs
+        opts: "{{ smb_opts }}"
+        state: mounted
+
+    - name: Ensure destination directory exists
+      ansible.builtin.file:
+        path: "{{ dest_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Copy the ZIP from SMB to destination
+      ansible.builtin.copy:
+        src: "{{ mount_point }}/{{ zip_name }}"
+        dest: "{{ dest_dir }}/{{ zip_name }}"
+        remote_src: true
+        mode: "0644"
+
+    - name: Unarchive RITA Docker bundle
+      ansible.builtin.unarchive:
+        src: "{{ dest_dir }}/{{ zip_name }}"
+        dest: "{{ dest_dir }}"
+        remote_src: true
+        extra_opts: ["-o"] # overwrite newer files if re-run
+  
+    - name: Bring up each compose project
+      ansible.builtin.shell: |
+        set -euo pipefail
+        docker compose up -d
+      args:
+        chdir: "{{ dest_dir }}/{{ item }}"
+        loop: "{{ compose_dirs }}"
+
+
+    - name: Show running containers
+      ansible.builtin.shell: docker ps --format '{{"{{.Names}}"}} {{"{{.Status}}"}} {{"{{.Ports}}"}}'
+        register: docker_ps
+        changed_when: false
+
+
+    - name: Print docker ps
+      ansible.builtin.debug:
+        msg: "{{ docker_ps.stdout_lines }}"
+
+
+
+    - name: Unmount SMB share (optional)
+      ansible.builtin.mount:
+        path: "{{ mount_point }}"
+        state: unmounted
+      when: true
