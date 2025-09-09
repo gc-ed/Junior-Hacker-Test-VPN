@@ -78,7 +78,12 @@
     dest: "/opt/"
     remote_src: true
     extra_opts: ["-o"]
-  
+
+- name: Ensure RITA Docker network exists
+  community.docker.docker_network:
+    name: rita-network
+    state: present
+
 - name: Build and run RITA backend services
   community.docker.docker_compose_v2:
     project_src: "/opt/rita-docker/backend-container"
