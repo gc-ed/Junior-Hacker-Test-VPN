@@ -4,6 +4,7 @@
     name:
       - ca-certificates
       - curl
+      - smbclient
     state: present
     update_cache: yes
 
