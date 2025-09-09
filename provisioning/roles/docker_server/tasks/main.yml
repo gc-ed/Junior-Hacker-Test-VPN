@@ -51,65 +51,64 @@
     state: started
     enabled: yes
 
-- name: Deploy rita-docker from guest SMB share
-  tasks:
-    - name: Create mount point
-      ansible.builtin.file:
-        path: "/mnt/smb_shared"
-        state: directory
-        mode: "0775"
+- name: Create mount point
+  ansible.builtin.file:
+    path: "/mnt/smb_shared"
+    state: directory
+    mode: "0775"
     
-    - name: Mount SMB Share (guest)
-      ansible.builtin.mount:
-        src: "//10.250.232.181/shared"
-        path: "/mnt/smb_shared"
-        fstype: cifs
-        opts: "guest,vers=3.0"
-        state: mounted
+- name: Mount SMB Share (guest)
+  ansible.builtin.mount:
+    src: "//10.250.232.181/shared"
+    path: "/mnt/smb_shared"
+    fstype: cifs
+    opts: "guest,vers=3.0"
+    state: mounted
 
-    - name: Copy the ZIP from SMB to destination
-      ansible.builtin.copy:
-        src: "/mnt/smb_shared/rita-docker.zip"
-        dest: "/opt/rita-docker.zip"
-        remote_src: true
-        mode: "0644"
+- name: Copy the ZIP from SMB to destination
+  ansible.builtin.copy:
+    src: "/mnt/smb_shared/rita-docker.zip"
+    dest: "/opt/rita-docker.zip"
+    remote_src: true
+    mode: "0644"
 
-    - name: Unarchive RITA Docker bundle
-      ansible.builtin.unarchive:
-        src: "/opt/rita-docker.zip"
-        dest: "/opt/"
-        remote_src: true
-        extra_opts: ["-o"]
+- name: Unarchive RITA Docker bundle
+  ansible.builtin.unarchive:
+    src: "/opt/rita-docker.zip"
+    dest: "/opt/"
+    remote_src: true
+    extra_opts: ["-o"]
   
-    - name: Build and run RITA backend services
-      community.docker.docker_compose_v2:
-        project_src: /opt/rita-docker/backend-container
-        state: present
-        built: yes
-      register: backend_compose_output
+- name: Build and run RITA backend services
+  community.docker.docker_compose_v2:
+    project_src: /opt/rita-docker/backend-container
+    state: present
+    built: yes
+  register: backend_compose_output
 
-    - name: Build and run RITA frontend services
-      community.docker.docker_compose_v2:
-        project_src: /opt/rita-docker/frontend-container
-        state: present
-        built: yes
-      register: frontend_compose_output
-    - name: Build and run RITA tools services
-      community.docker.docker_compose_v2:
-        project_src: /opt/rita-docker/tools-containers
-        state: present
-        built: yes
-      register: tools_compose_output
+- name: Build and run RITA frontend services
+  community.docker.docker_compose_v2:
+    project_src: /opt/rita-docker/frontend-container
+    state: present
+    built: yes
+  register: frontend_compose_output
+    
+- name: Build and run RITA tools services
+  community.docker.docker_compose_v2:
+    project_src: /opt/rita-docker/tools-containers
+    state: present
+    built: yes
+  register: tools_compose_output
 
-    - name: Show Docker Compose output
-      ansible.builtin.debug:
-        msg: |
-          Backend: {{ backend_compose_output | default('No output captured') }}
-          Frontend: {{ frontend_compose_output | default('No output captured') }}
-          Tools: {{ tools_compose_output | default('No output captured') }}
+- name: Show Docker Compose output
+  ansible.builtin.debug:
+    msg: |
+      Backend: {{ backend_compose_output | default('No output captured') }}
+      Frontend: {{ frontend_compose_output | default('No output captured') }}
+      Tools: {{ tools_compose_output | default('No output captured') }}
 
-    - name: Unmount SMB share
-      ansible.builtin.mount:
-        path: "/mnt/smb_shared"
-        state: unmounted
-      when: true
+- name: Unmount SMB share
+  ansible.builtin.mount:
+    path: "/mnt/smb_shared"
+    state: unmounted
+  when: true
