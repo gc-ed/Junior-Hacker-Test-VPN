@@ -86,21 +86,21 @@
 
 - name: Build and run RITA backend services
   community.docker.docker_compose_v2:
-    project_src: "/opt/rita-docker/backend-container/rita-backend"
+    project_src: "/opt/rita-docker/backend-container"
     state: present
     build: policy
   register: backend_compose_output
 
 - name: Build and run RITA frontend services
   community.docker.docker_compose_v2:
-    project_src: "/opt/rita-docker/frontend-container/rita-frontend"
+    project_src: "/opt/rita-docker/frontend-container"
     state: present
     build: never
   register: frontend_compose_output
     
 - name: Build and run RITA tools services
   community.docker.docker_compose_v2:
-    project_src: "/opt/rita-docker/tools-containers/periodic-backup"
+    project_src: "/opt/rita-docker/tools-containers"
     state: present
     build: always
   register: tools_compose_output
