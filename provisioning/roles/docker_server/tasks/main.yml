@@ -88,14 +88,14 @@
   community.docker.docker_compose_v2:
     project_src: "/opt/rita-docker/backend-container"
     state: present
-    build: policy
+    build: always
   register: backend_compose_output
 
 - name: Build and run RITA frontend services
   community.docker.docker_compose_v2:
     project_src: "/opt/rita-docker/frontend-container"
     state: present
-    build: never
+    build: always
   register: frontend_compose_output
     
 - name: Build and run RITA tools services
