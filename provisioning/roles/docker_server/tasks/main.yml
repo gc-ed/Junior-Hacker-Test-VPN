@@ -52,69 +52,58 @@
     enabled: yes
 
 - name: Deploy rita-docker from guest SMB share
-  vars:
-    smb_server: "10.250.232.181"
-    smb_share: "shared"
-    mount_point: "/mnt/smb_shared"
-    zip_name: "rita-docker.zip"
-    dest_dir: "/opt/"
-    smb_opts: "guest,vers=3.0"
-    compose_dirs:
-      - backend-containers
-      - tools-containers
-      - frontend-containers
   tasks:
     - name: Create mount point
       ansible.builtin.file:
-        src: "//{{ smb_server }}/{{ smb_share }}"
-        path: "{{ mount_point }}"
+        src: "//10.250.232.181/shared"
+        path: "/mnt/smb_shared"
         fstype: cifs
-        opts: "{{ smb_opts }}"
+        opts: "guest,vers=3.0"
         state: mounted
-
-    - name: Ensure destination directory exists
-      ansible.builtin.file:
-        path: "{{ dest_dir }}"
-        state: directory
-        mode: "0755"
 
     - name: Copy the ZIP from SMB to destination
       ansible.builtin.copy:
-        src: "{{ mount_point }}/{{ zip_name }}"
-        dest: "{{ dest_dir }}/{{ zip_name }}"
+        src: "/mnt/smb_shared/rita-docker.zip"
+        dest: "/opt/rita-docker.zip"
         remote_src: true
         mode: "0644"
 
     - name: Unarchive RITA Docker bundle
       ansible.builtin.unarchive:
-        src: "{{ dest_dir }}/{{ zip_name }}"
-        dest: "{{ dest_dir }}"
+        src: "/opt/rita-docker.zip"
+        dest: "/opt/"
         remote_src: true
-        extra_opts: ["-o"] # overwrite newer files if re-run
+        extra_opts: ["-o"]
   
-    - name: Bring up each compose project
-      ansible.builtin.shell: |
-        set -euo pipefail
-        docker compose up -d
-      args:
-        chdir: "{{ dest_dir }}/{{ item }}"
-        loop: "{{ compose_dirs }}"
+    - name: Build and run RITA backend services
+      community.docker.docker_compose_v2:
+        project_src: /opt/rita-docker/backend-container
+        state: present
+        built: yes
+      register: backend_compose_output
 
+    - name: Build and run RITA frontend services
+      community.docker.docker_compose_v2:
+        project_src: /opt/rita-docker/frontend-container
+        state: present
+        built: yes
+      register: frontend_compose_output
+    - name: Build and run RITA tools services
+      community.docker.docker_compose_v2:
+        project_src: /opt/rita-docker/tools-containers
+        state: present
+        built: yes
+      register: tools_compose_output
 
-    - name: Show running containers
-      ansible.builtin.shell: docker ps --format '{{"{{.Names}}"}} {{"{{.Status}}"}} {{"{{.Ports}}"}}'
-        register: docker_ps
-        changed_when: false
-
-
-    - name: Print docker ps
+    - name: Show Docker Compose output
       ansible.builtin.debug:
-        msg: "{{ docker_ps.stdout_lines }}"
+        msg: |
+          Backend: {{ backend_compose_output | default('No output captured') }}
+          Frontend: {{ frontend_compose_output | default('No output captured') }}
+          Tools: {{ tools_compose_output | default('No output captured') }}
 
-
-
-    - name: Unmount SMB share (optional)
+    - name: Unmount SMB share
       ansible.builtin.mount:
-        path: "{{ mount_point }}"
+        path: "/mnt/smb_shared"
         state: unmounted
       when: true
