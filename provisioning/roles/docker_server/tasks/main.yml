@@ -83,7 +83,7 @@
   community.docker.docker_compose_v2:
     project_src: "/opt/rita-docker/backend-container"
     state: present
-    build: missing
+    build: policy
   register: backend_compose_output
 
 - name: Build and run RITA frontend services
@@ -97,7 +97,7 @@
   community.docker.docker_compose_v2:
     project_src: /opt/rita-docker/tools-containers
     state: present
-    build: never
+    build: always
   register: tools_compose_output
 
 - name: Show Docker Compose output
