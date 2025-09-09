@@ -80,7 +80,7 @@
     extra_opts: ["-o"]
 
 - name: Unzip rita frontend dist.zip
-  ansible.builtin.copy:
+  ansible.builtin.unarchive:
     src: "/opt/rita-docker/frontend-container/rita-frontend/dist.zip"
     dest: "/opt/rita-docker/frontend-container/rita-frontend"
     remote_src: true
