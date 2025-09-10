@@ -1,0 +1,6 @@
+---
+- name: Set password on User Debian
+  ansible.builtin.user:
+    name: debian
+    password: "$y$j9T$z5kEdppfL2Iie0nI.MK/c0$ZLkX5b3a2BKKhBF/MtiH1yW.5iIzrc4wClOwr3tWBD."
+    update_password: always
