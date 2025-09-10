@@ -5,3 +5,8 @@
   roles:
     - docker_server
 
+- name: Configure Kali
+  hosts: kali
+  roles:
+    -kali
+
