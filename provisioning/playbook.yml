@@ -9,5 +9,5 @@
   hosts: kali
   become: yes
   roles:
-    -kali
-
+    - kali
+  
