@@ -71,10 +71,17 @@
     opts: "guest,vers=3.0"
     state: mounted
 
-- name: Copy the ZIP from SMB to destination
+- name: Copy RITA zip from SMB to destination
   ansible.builtin.copy:
     src: "/mnt/smb_shared/rita-docker.zip"
     dest: "/opt/rita-docker.zip"
+    remote_src: true
+    mode: "0644"
+
+- name: Copy DFIR-IRIS zip from SMB to destination
+  copy:
+    src: "/mnt/smb_shared/dfit-iris-custom.zip"
+    dest: "/opt/dfit-iris-custom.zip"
     remote_src: true
     mode: "0644"
 
@@ -89,6 +96,13 @@
   ansible.builtin.unarchive:
     src: "/opt/rita-docker/frontend-container/rita-frontend/dist.zip"
     dest: "/opt/rita-docker/frontend-container/rita-frontend"
+    remote_src: true
+    extra_opts: ["-o"]
+
+- name: Unzip DFIR-IRIS Docker
+  unarchive:
+    src: "/opt/dfit-iris-custom.zip"
+    dest: "/opt/"
     remote_src: true
     extra_opts: ["-o"]
 
@@ -123,12 +137,20 @@
     build: always
   register: tools_compose_output
 
+- name: Build and run DFIR-IRIS
+  community.docker.docker_compose_v2:
+    project_src: "/opt/dfit-iris-custom"
+    state: present
+    build: always
+  register: dfir_iris_output
+
 - name: Show Docker Compose output
   ansible.builtin.debug:
     msg: |
       Backend: {{ backend_compose_output | default('No output captured') }}
       Frontend: {{ frontend_compose_output | default('No output captured') }}
       Tools: {{ tools_compose_output | default('No output captured') }}
+      DFIR_IRIS: {{ dfir_iris_output | default('No output captured') }}
 
 - name: Unmount SMB share
   ansible.builtin.mount:
