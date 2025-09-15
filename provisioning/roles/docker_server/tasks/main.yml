@@ -80,8 +80,8 @@
 
 - name: Copy DFIR-IRIS zip from SMB to destination
   copy:
-    src: "/mnt/smb_shared/dfit-iris-custom.zip"
-    dest: "/opt/dfit-iris-custom.zip"
+    src: "/mnt/smb_shared/dfir-iris-custom.zip"
+    dest: "/opt/dfir-iris-custom.zip"
     remote_src: true
     mode: "0644"
 
@@ -101,7 +101,7 @@
 
 - name: Unzip DFIR-IRIS Docker
   unarchive:
-    src: "/opt/dfit-iris-custom.zip"
+    src: "/opt/dfir-iris-custom.zip"
     dest: "/opt/"
     remote_src: true
     extra_opts: ["-o"]
@@ -139,7 +139,7 @@
 
 - name: Build and run DFIR-IRIS
   community.docker.docker_compose_v2:
-    project_src: "/opt/dfit-iris-custom"
+    project_src: "/opt/dfir-iris-custom"
     state: present
     build: always
   register: dfir_iris_output
