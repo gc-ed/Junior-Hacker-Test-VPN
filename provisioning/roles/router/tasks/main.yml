@@ -96,7 +96,7 @@
   command: netfilter-persistent save
 
 - name: Start OpenVPN
-  command: openvpn --config /opt/ngsoc-vpn.ovpn --deamon
+  command: openvpn --config /opt/ngsoc-vpn.ovpn --daemon VPN-SPH-NGSIEM
 
 - name: Unmount SMB share
   ansible.builtin.mount:
