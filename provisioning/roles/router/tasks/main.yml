@@ -1,1 +1,95 @@
 ---
+- name: Install OpenVPN v2.5.6 and Configure VPN
+  vars:
+    openvpn_deb_url: 
+
+- name: Install prerequisites
+  apt:
+    name:
+      - curl
+      - smbclient
+      - cifs-utils
+      - unzip
+      - iptables-persistent
+    state: present
+    update_cache: yes
+
+- name: Create mount point
+  ansible.builtin.file:
+    path: "/mnt/smb_shared"
+    state: directory
+    mode: "0775"
+    
+- name: Mount SMB Share (guest)
+  ansible.builtin.mount:
+    src: "//10.250.232.181/shared"
+    path: "/mnt/smb_shared"
+    fstype: cifs
+    opts: "guest,vers=3.0"
+    state: mounted
+
+- name: Copy OpenVPN deb
+  copy:
+    src: "/mnt/smb_shared/openvpn_2.5.6-1_amd64.deb"
+    dest: "/opt/openvpn_2.5.6-1_amd64.deb"
+    remote_src: true
+    mode: "0644"
+
+- name: Copy OpenVPN Configuration file
+  copy:
+    src: "/mnt/smb_shared/ngsoc-vpn.ovpn"
+    dest: "/opt/ngsoc-vpn.ovpn"
+    remote_src: true
+    mode: "0644"
+
+- name: Copy OpenVPN creds
+  copy:
+    src: "/mnt/smb_shared/creds.txt"
+    dest: "/opt/creds.txt"
+    remote_src: true
+    mode: "0600"
+
+- name: Remote Installed OpenVPN
+  apt:
+    name: openvpn
+    state: absent
+
+- name: Install OpenVPN v2.5.6
+  apt:
+    deb: "/opt/openvpn_2.5.6-1_amd64.deb"
+    state: present
+
+- name: Enable IP Forwarding (temporary)
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present
+    sysctl_set: yes
+    reload: yes
+
+- name: Make IP Forwarding permanent
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^#?net.ipv4.ip_forward'
+    line: 'net.ipv4.ip_forward = 1'
+
+- name: Setup NAT masquerading for the VPN
+  iptables:
+    table: nat
+    chain: POSTROUTING
+    jump: MASQUERADE
+    source: 10.0.12.0/24
+    out_interface: tun0
+    state: present
+
+- name: Save iptables rules
+  command: netfilter-persistent save
+
+- name: Start OpenVPN
+  command: openvpn --config /opt/ngsoc-vpn.ovpn --deamon
+
+- name: Unmount SMB share
+  ansible.builtin.mount:
+    path: "/mnt/smb_shared"
+    state: unmounted
+  when: true
