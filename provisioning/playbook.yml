@@ -11,3 +11,8 @@
   roles:
     - kali
   
+- name: Configure Router
+  hosts: router
+  become: true
+  roles:
+    - router
