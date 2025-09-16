@@ -7,6 +7,7 @@
       - cifs-utils
       - unzip
       - iptables-persistent
+      - libssl1.1
     state: present
     update_cache: yes
 
@@ -44,6 +45,13 @@
     dest: "/opt/creds.txt"
     remote_src: true
     mode: "0600"
+
+- name: Copy libssl deb
+  copy:
+    src: "/mnt/smb_shared/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb"
+    dest: "/opt/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb"
+    remote_src: true
+    mode: "0644"
 
 - name: Remote Installed OpenVPN
   apt:
