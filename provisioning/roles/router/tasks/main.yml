@@ -7,7 +7,6 @@
       - cifs-utils
       - unzip
       - iptables-persistent
-      - libssl1.1
     state: present
     update_cache: yes
 
@@ -57,6 +56,11 @@
   apt:
     name: openvpn
     state: absent
+
+- name: Intall libssl1.1
+  apt:
+    deb: "/opt/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb"
+    state: present
 
 - name: Install OpenVPN v2.5.6
   apt:
