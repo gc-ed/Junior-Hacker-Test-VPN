@@ -32,6 +32,9 @@ net_mappings:
   - host: docker-server
     network: testnet
     ip: 10.0.12.60
+  - host: victim
+    networK: testnet
+    ip: 10.0.12.100
 router_mappings: 
   - router: router
     network: testnet
