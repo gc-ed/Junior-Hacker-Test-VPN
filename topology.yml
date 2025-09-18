@@ -10,6 +10,11 @@ hosts:
       image: ubuntu-noble-x86_64
       mgmt_user: ubuntu
     flavor: standard.medium
+  - name: victim
+    base_box:
+      image: ubuntu-noble-x86_64
+      mgmt_user: ubuntu
+    flavor: standard.medium
 routers: 
   - name: router
     base_box:
