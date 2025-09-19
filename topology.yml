@@ -33,7 +33,7 @@ net_mappings:
     network: testnet
     ip: 10.0.12.60
   - host: victim
-    networK: testnet
+    network: testnet
     ip: 10.0.12.100
 router_mappings: 
   - router: router
