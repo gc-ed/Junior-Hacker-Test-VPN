@@ -5,7 +5,7 @@
     password: "$y$j9T$r1LaddN0V6MPqFmZl5U7C/$4xbYJL5zi/YFU85SL/gXz5UXs3JAXV5dU5CUvTN/WN9"
     update_password: always
 
-#- name: Set sequential hostname
-#  hostname:
-#    name: "victim{{ '%02d' | format(ansible_play_hosts.index(inventory_hostname) + 1) }}"
+- name: Set sequential hostname
+  hostname:
+    name: "victim{{ '%02d' | format(ansible_play_hosts.index(inventory_hostname) + 1) }}"
 
