@@ -13,25 +13,6 @@
   command: hostname
   register: current_hostname
 
-#- name: Create /etc/apt/keyrings directory
-#  file:
-#    path: /etc/apt/keyrings
-#    state: directory
-#    mode: "0755"
-
-#- name: Download Wazuh GPG key
-#  get_url:
-#    url: https://packages.wazuh.com/key/GPG-KEY-WAZUH
-#    dest: /etc/apt/keyrings/wazuh.gpg
-#    mode: '0644'
-
-#- name: Add Wazuh Repository Source
-#  apt_repository:
-#    repo: "deb [signed-by=/etc/apt/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main"
-#    state: present
-#    filename: wazuh
-#    update_cache: yes
-
 - name: Add Wazuh GPG key
   apt_key:
     url: https://packages.wazuh.com/key/GPG-KEY-WAZUH
