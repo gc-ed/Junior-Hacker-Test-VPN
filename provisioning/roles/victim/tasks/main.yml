@@ -7,5 +7,5 @@
 
 - name: Set sequential hostname
   hostname:
-    name: "victim{{ '%02d' | format(ansible_play_hosts.index(inventory_hostname) + 1) }}"
+    name: "victim{{ '%03d' | format(1000 | random) }}"
 
