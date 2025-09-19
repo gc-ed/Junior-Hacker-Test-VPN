@@ -9,3 +9,44 @@
   hostname:
     name: "victim{{ '%03d' | format(1000 | random) }}"
 
+- name: Get current HostName
+  command: hostname
+  register: current_hostname
+
+- name: Create /etc/apt/keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+
+- name: Download Wazuh GPG key
+  get_url:
+    url: https://packages.wazuh.com/key/GPG-KEY-WAZUH
+    dest: /etc/apt/keyrings/wazuh.gpg
+    mode: '0644'
+
+- name: Add Wazuh Repository Source
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main"
+    state: present
+    filename: wazuh
+    update_cache: yes
+
+- name: Install Wazuh agent with the current dynamic hostname
+  environment:
+    WAZUH_MANAGER: "10.0.19.147"
+    WAZUH_MANAGER_PORT: "31514"
+    WAZUH_REGISTRATION_SERVER: "10.0.19.147"
+    WAZUH_REGISTRATION_PORT: "31515"
+    WAZUH_REGISTRATION_PASSWORD: "changeme"
+    WAZUH_AGENT_NAME: "{{ current_hostname.stdout }}"
+    WAZUH_AGENT_GROUP: "default"
+  apt:
+    name: "wazuh-agent=4.4.0-1"
+    state: present
+
+- name: Start and Enable Wazuh-agent service
+  service:
+    name: wazuh-agent
+    state: started
+    enabled: yes
