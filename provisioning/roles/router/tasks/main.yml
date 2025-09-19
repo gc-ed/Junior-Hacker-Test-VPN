@@ -18,7 +18,7 @@
     
 - name: Mount SMB Share (guest)
   ansible.builtin.mount:
-    src: "//10.250.232.181/shared"
+    src: "//10.250.232.198/shared"
     path: "/mnt/smb_shared"
     fstype: cifs
     opts: "guest,vers=3.0"
