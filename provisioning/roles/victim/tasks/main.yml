@@ -13,24 +13,35 @@
   command: hostname
   register: current_hostname
 
-- name: Create /etc/apt/keyrings directory
-  file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: "0755"
+#- name: Create /etc/apt/keyrings directory
+#  file:
+#    path: /etc/apt/keyrings
+#    state: directory
+#    mode: "0755"
 
-- name: Download Wazuh GPG key
-  get_url:
+#- name: Download Wazuh GPG key
+#  get_url:
+#    url: https://packages.wazuh.com/key/GPG-KEY-WAZUH
+#    dest: /etc/apt/keyrings/wazuh.gpg
+#    mode: '0644'
+
+#- name: Add Wazuh Repository Source
+#  apt_repository:
+#    repo: "deb [signed-by=/etc/apt/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main"
+#    state: present
+#    filename: wazuh
+#    update_cache: yes
+
+- name: Add Wazuh GPG key
+  apt_key:
     url: https://packages.wazuh.com/key/GPG-KEY-WAZUH
-    dest: /etc/apt/keyrings/wazuh.gpg
-    mode: '0644'
+    state: present
 
-- name: Add Wazuh Repository Source
+- name: Add Wazuh Repository
   apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main"
+    repo: "deb https://packages.wazuh.com/4.x/apt stable main"
     state: present
     filename: wazuh
-    update_cache: yes
 
 - name: Install Wazuh agent with the current dynamic hostname
   environment:
