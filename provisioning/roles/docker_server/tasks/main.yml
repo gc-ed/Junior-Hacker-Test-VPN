@@ -185,6 +185,7 @@
   copy:
     src: /opt/misp-docker/template.env
     dest: /opt/misp-docker/.env
+    remote_src: yes
 
 - name: 
   community.docker.docker_compose_v2:
