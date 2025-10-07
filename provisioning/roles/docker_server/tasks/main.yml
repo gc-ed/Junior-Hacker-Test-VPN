@@ -198,7 +198,7 @@
   lineinfile:
     path: /opt/misp-docker/.env
     regexp: '^#?CORE_HTTPS_PORT='
-    line: CORE_HTTP_PORT=8443
+    line: CORE_HTTPS_PORT=8443
     state: present
 
 - name: 
