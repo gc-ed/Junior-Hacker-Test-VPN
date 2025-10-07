@@ -91,6 +91,12 @@
     state: directory
     mode: "0755"
 
+- name: Create MISP directory for the git repo
+  file:
+    path: "/opt/misp-docker"
+    state: directory
+    mode: "0755"
+
 - name: Copy NG-SOAR yml from SMB to destination
   copy:
     src: "/mnt/smb_shared/NG-SOAR.yml"
@@ -172,7 +178,7 @@
 - name: Download MISP docker
   git:
     repo: "https://github.com/MISP/misp-docker.git"
-    dest: "/opt/"
+    dest: "/opt/misp-docker"
     version: "master"
   
 - name: Copy MISP env
