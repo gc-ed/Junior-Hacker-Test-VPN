@@ -161,12 +161,12 @@
     build: always
   register: tools_compose_output
 
-- name: Build and run DFIR-IRIS
-  community.docker.docker_compose_v2:
-    project_src: "/opt/dfir-iris-custom"
-    state: present
-    build: always
-  register: dfir_iris_output
+#- name: Build and run DFIR-IRIS
+#  community.docker.docker_compose_v2:
+#    project_src: "/opt/dfir-iris-custom"
+#    state: present
+#    build: always
+#  register: dfir_iris_output
 
 - name: Build and run NG-SOAR
   community.docker.docker_compose_v2:
