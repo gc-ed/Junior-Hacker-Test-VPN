@@ -187,6 +187,20 @@
     dest: /opt/misp-docker/.env
     remote_src: yes
 
+- name: Change env http port for MISP
+  lineinfile:
+    path: /opt/misp-docker/.env
+    regexp: '^#?CORE_HTTP_PORT='
+    line: CORE_HTTP_PORT=8082
+    state: present
+
+- name: Change env https port for MISP
+  lineinfile:
+    path: /opt/misp-docker/.env
+    regexp: '^#?CORE_HTTPS_PORT='
+    line: CORE_HTTP_PORT=8443
+    state: present
+
 - name: 
   community.docker.docker_compose_v2:
     project_src: "/opt/misp-docker"
