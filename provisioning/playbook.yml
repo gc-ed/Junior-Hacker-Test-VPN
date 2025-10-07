@@ -10,12 +10,6 @@
   become: yes
   roles:
     - kali
-  
-#- name: Configure Router
-#  hosts: router
-#  become: true
-#  roles:
-#    - router
 
 - name: Configuring Docker-Server
   hosts: victim
