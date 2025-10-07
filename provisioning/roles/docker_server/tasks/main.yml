@@ -94,7 +94,7 @@
 - name: Copy NG-SOAR yml from SMB to destination
   copy:
     src: "/mnt/smb_shared/NG-SOAR.yml"
-    dest: "/opt/NG-SOAR/NG-SOAR.yml"
+    dest: "/opt/NG-SOAR/docker-compose.yml"
     remote_src: true
     mode: "0644"
 
