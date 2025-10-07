@@ -169,6 +169,24 @@
     build: always
   register: NG_SOAR_output
 
+- name: Download MISP docker
+  git:
+    repo: "https://github.com/MISP/misp-docker.git"
+    dest: "/opt/"
+    version: "master"
+  
+- name: Copy MISP env
+  copy:
+    src: /opt/misp-docker/template.env
+    dest: /opt/misp-docker/.env
+
+- name: 
+  community.docker.docker_compose_v2:
+    project_src: "/opt/misp-docker"
+    state: present
+    build: always
+  register: misp_output
+
 - name: Show Docker Compose output
   ansible.builtin.debug:
     msg: |
@@ -177,6 +195,7 @@
       Tools: {{ tools_compose_output | default('No output captured') }}
       DFIR_IRIS: {{ dfir_iris_output | default('No output captured') }}
       NG-SOAR: {{ NG_SOAR_output | default('No output captured') }}
+      MISP: {{ misp_output | default('No output captured') }}
 
 - name: Unmount SMB share
   ansible.builtin.mount:
