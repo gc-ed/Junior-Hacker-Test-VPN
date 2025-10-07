@@ -190,16 +190,25 @@
 - name: Change env http port for MISP
   lineinfile:
     path: /opt/misp-docker/.env
-    regexp: '^#?CORE_HTTP_PORT='
+    regexp: '^#?\s*CORE_HTTP_PORT='
     line: CORE_HTTP_PORT=8082
     state: present
 
 - name: Change env https port for MISP
   lineinfile:
     path: /opt/misp-docker/.env
-    regexp: '^#?CORE_HTTPS_PORT='
-    line: CORE_HTTPS_PORT=8443
+    regexp: '^#?\s*CORE_HTTPS_PORT='
+    line: CORE_HTTP_PORT=8443
     state: present
+
+- name: Change BASE_URL in env for MISP
+  lineinfile:
+    path: /opt/misp-docker/.env
+    regexp: '^#?\s*BASE_URL='
+    line: BASE_URL=https://{{ 10.0.12.60 }}:8443
+    state: present
+    insertafter: EOF
+    backup: yes
 
 - name: 
   community.docker.docker_compose_v2:
