@@ -104,19 +104,19 @@
     remote_src: true
     mode: "0644"
 
-- name: Unarchive RITA Docker bundle
-  ansible.builtin.unarchive:
-    src: "/opt/rita-docker.zip"
-    dest: "/opt/"
-    remote_src: true
-    extra_opts: ["-o"]
+#- name: Unarchive RITA Docker bundle
+#  ansible.builtin.unarchive:
+#    src: "/opt/rita-docker.zip"
+#    dest: "/opt/"
+#    remote_src: true
+#    extra_opts: ["-o"]
 
-- name: Unzip rita frontend dist.zip
-  ansible.builtin.unarchive:
-    src: "/opt/rita-docker/frontend-container/rita-frontend/dist.zip"
-    dest: "/opt/rita-docker/frontend-container/rita-frontend"
-    remote_src: true
-    extra_opts: ["-o"]
+#- name: Unzip rita frontend dist.zip
+#  ansible.builtin.unarchive:
+#    src: "/opt/rita-docker/frontend-container/rita-frontend/dist.zip"
+#    dest: "/opt/rita-docker/frontend-container/rita-frontend"
+#    remote_src: true
+#    extra_opts: ["-o"]
 
 - name: Unzip DFIR-IRIS Docker
   unarchive:
@@ -125,10 +125,10 @@
     remote_src: true
     extra_opts: ["-o"]
 
-- name: Ensure RITA Docker network exists
-  community.docker.docker_network:
-    name: rita-network
-    state: present
+#- name: Ensure RITA Docker network exists
+#  community.docker.docker_network:
+#    name: rita-network
+#    state: present
 
 #- name: Ensure NG-SOAR network exists
 #  community.docker.docker_network:
@@ -140,40 +140,40 @@
     username: demongsoc
     password: "dckr_pat_OzOR3rfLKW3QcFAFUfAi_Je_5_Q"
 
-- name: Build and run RITA backend services
-  community.docker.docker_compose_v2:
-    project_src: "/opt/rita-docker/backend-container"
-    state: present
-    build: always
-  register: backend_compose_output
-
-- name: Build and run RITA frontend services
-  community.docker.docker_compose_v2:
-    project_src: "/opt/rita-docker/frontend-container"
-    state: present
-    build: always
-  register: frontend_compose_output
-    
-- name: Build and run RITA tools services
-  community.docker.docker_compose_v2:
-    project_src: "/opt/rita-docker/tools-containers"
-    state: present
-    build: always
-  register: tools_compose_output
-
-#- name: Build and run DFIR-IRIS
+#- name: Build and run RITA backend services
 #  community.docker.docker_compose_v2:
-#    project_src: "/opt/dfir-iris-custom"
+#    project_src: "/opt/rita-docker/backend-container"
 #    state: present
 #    build: always
-#  register: dfir_iris_output
+#  register: backend_compose_output
 
-- name: Build and run NG-SOAR
+#- name: Build and run RITA frontend services
+#  community.docker.docker_compose_v2:
+#    project_src: "/opt/rita-docker/frontend-container"
+#    state: present
+#    build: always
+#  register: frontend_compose_output
+    
+#- name: Build and run RITA tools services
+#  community.docker.docker_compose_v2:
+#    project_src: "/opt/rita-docker/tools-containers"
+#    state: present
+#    build: always
+#  register: tools_compose_output
+
+- name: Build and run DFIR-IRIS
   community.docker.docker_compose_v2:
-    project_src: "/opt/NG-SOAR"
+    project_src: "/opt/dfir-iris-custom"
     state: present
     build: always
-  register: NG_SOAR_output
+  register: dfir_iris_output
+
+#- name: Build and run NG-SOAR
+#  community.docker.docker_compose_v2:
+#    project_src: "/opt/NG-SOAR"
+#    state: present
+#    build: always
+#  register: NG_SOAR_output
 
 - name: Download MISP docker
   git:
@@ -217,15 +217,15 @@
     build: always
   register: misp_output
 
-- name: Show Docker Compose output
-  ansible.builtin.debug:
-    msg: |
-      Backend: {{ backend_compose_output | default('No output captured') }}
-      Frontend: {{ frontend_compose_output | default('No output captured') }}
-      Tools: {{ tools_compose_output | default('No output captured') }}
-      DFIR_IRIS: {{ dfir_iris_output | default('No output captured') }}
-      NG-SOAR: {{ NG_SOAR_output | default('No output captured') }}
-      MISP: {{ misp_output | default('No output captured') }}
+#- name: Show Docker Compose output
+#  ansible.builtin.debug:
+#    msg: |
+#      Backend: {{ backend_compose_output | default('No output captured') }}
+#      Frontend: {{ frontend_compose_output | default('No output captured') }}
+#      Tools: {{ tools_compose_output | default('No output captured') }}
+#      DFIR_IRIS: {{ dfir_iris_output | default('No output captured') }}
+#      NG-SOAR: {{ NG_SOAR_output | default('No output captured') }}
+#      MISP: {{ misp_output | default('No output captured') }}
 
 - name: Unmount SMB share
   ansible.builtin.mount:
