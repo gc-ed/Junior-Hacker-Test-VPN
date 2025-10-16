@@ -11,11 +11,11 @@
   roles:
     - kali
 
-- name: Configuring Victim
-  hosts: victim
-  become: yes
-  roles:
-    - victim
+#- name: Configuring Victim
+#  hosts: victim
+#  become: yes
+#  roles:
+#    - victim
 
 - name: Configure hosts file
   hosts: all
