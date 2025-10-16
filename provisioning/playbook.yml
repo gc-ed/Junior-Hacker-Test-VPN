@@ -11,7 +11,7 @@
   roles:
     - kali
 
-- name: Configuring Docker-Server
+- name: Configuring Victim
   hosts: victim
   become: yes
   roles:
