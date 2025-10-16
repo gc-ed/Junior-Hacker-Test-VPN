@@ -210,6 +210,13 @@
     insertafter: EOF
     backup: yes
 
+- name: Change DFIR-IRIS.yml iris_nginx port
+  lineinfile:
+    path: /opt/dfir-iris-custom/docker-composed.yml
+    regexp: ^\s*-\s*"8080:80"$
+    line: - "8083:80"
+    state: present
+
 - name: Deploy MISP Docker
   community.docker.docker_compose_v2:
     project_src: "/opt/misp-docker"
