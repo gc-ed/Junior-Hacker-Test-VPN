@@ -5,11 +5,11 @@
   roles:
     - docker_server
 
-- name: Configure Kali
-  hosts: kali
-  become: yes
-  roles:
-    - kali
+#- name: Configure Kali
+#  hosts: kali
+#  become: yes
+#  roles:
+#    - kali
 
 #- name: Configuring Victim
 #  hosts: victim
